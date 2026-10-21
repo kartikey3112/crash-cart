@@ -7,9 +7,15 @@ renderShell("runs.html");
 const app = document.getElementById("app");
 const STATUS_ORDER = { failed: 0, error: 0, flaky: 1, skipped: 2, passed: 3 };
 
+// Playwright stores a retry's files in a folder ending "-retry1", "-retry2", ...
+function attemptOf(path) {
+  const match = /-retry(\d+)\//.exec(path);
+  return match ? Number(match[1]) + 1 : 1;
+}
+
 function artifactLinks(test) {
-  return test.artifacts.map((a, i) => {
-    const attempt = test.artifacts.length > 2 ? ` ${Math.floor(i / 2) + 1}` : "";
+  return test.artifacts.map((a) => {
+    const attempt = test.attempts > 1 ? ` ${attemptOf(a.path)}` : "";
     if (a.type === "trace") {
       const absolute = new URL(a.path, location.href).href;
       return el("span", {},

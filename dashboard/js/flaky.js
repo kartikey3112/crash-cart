@@ -3,6 +3,7 @@ import { LAYER_LABELS, commitLink, el, fmtDate, loadJSON, renderShell, showError
 renderShell("flaky.html");
 const app = document.getElementById("app");
 
+const runs = (n) => `${n} run${n === 1 ? "" : "s"}`;
 const runLinks = (ids) => ids.map((id) => el("a", { href: `run.html?id=${encodeURIComponent(id)}`, class: "pill mono" }, id));
 
 function definitions(flaky) {
@@ -14,7 +15,7 @@ function definitions(flaky) {
       el("li", {}, el("strong", {}, `${flaky.window_days}-day flip rate: `), "how often the result changed between consecutive runs (changes ÷ (runs − 1))."),
       el("li", {}, el("strong", {}, "Excluded: "), "runs with bug switches on, because their failures are deliberate.")),
     el("p", { class: "muted" },
-      `Based on ${flaky.runs_considered} runs without injected bugs (${flaky.runs_excluded_with_bugs} runs with bug switches excluded)` +
+      `Based on ${runs(flaky.runs_considered)} without injected bugs (${runs(flaky.runs_excluded_with_bugs)} with bug switches excluded)` +
       (flaky.generated_at ? `, up to ${fmtDate(flaky.generated_at)}.` : ".")));
 }
 
@@ -34,7 +35,7 @@ async function main() {
           el("td", {}, t.retry_flaky_runs.length ? runLinks(t.retry_flaky_runs) : el("span", { class: "muted" }, "never")))))))
       : el("div", { class: "card empty section", "data-testid": "flaky-empty" },
         el("strong", {}, "No flaky tests detected."),
-        el("div", {}, `None of the ${flaky.runs_considered} runs without injected bugs showed a test changing result on the same commit or passing only on retry.`));
+        el("div", {}, `No test changed result on the same commit or passed only on retry, across ${runs(flaky.runs_considered)} without injected bugs.`));
     app.replaceChildren(el("h1", {}, "Flaky tests"), el("p", { class: "ink-2" }, "Tests whose result changes when the code doesn't."), definitions(flaky), content);
   } catch (error) {
     showError(app, error);
