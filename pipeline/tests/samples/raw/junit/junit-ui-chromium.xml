@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests">
+  <testsuite name="pytest" errors="0" failures="1" skipped="0" tests="5" time="20.0">
+    <!-- flaky: first attempt (no <failure>, but has artifacts), then a passing retry -->
+    <testcase classname="tests.ui.test_cart_ui" name="test_badge[chromium]" time="1.0">
+      <properties>
+        <property name="playwright_screenshot" value="test-results\badge\test-failed-1.png"/>
+        <property name="playwright_trace" value="test-results\badge\trace.zip"/>
+      </properties>
+    </testcase>
+    <testcase classname="tests.ui.test_cart_ui" name="test_badge[chromium]" time="0.5"/>
+    <!-- failed on both attempts -->
+    <testcase classname="tests.ui.test_catalog_ui" name="test_sort[chromium]" time="0.9">
+      <properties>
+        <property name="playwright_trace" value="test-results\sort\trace.zip"/>
+      </properties>
+    </testcase>
+    <testcase classname="tests.ui.test_catalog_ui" name="test_sort[chromium]" time="0.8">
+      <properties>
+        <property name="playwright_trace" value="test-results\sort-retry1\trace.zip"/>
+        <property name="playwright_screenshot" value="test-results\missing\gone.png"/>
+      </properties>
+      <failure message="AssertionError: prices not descending">trace</failure>
+    </testcase>
+    <!-- same test on another browser: catalog only has the chromium id -->
+    <testcase classname="tests.ui.test_catalog_ui" name="test_sort[firefox]" time="1.1"/>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,8 @@
+[
+  {"id": "tests/api/test_cart.py::test_add_item", "name": "test_add_item", "file": "tests/api/test_cart.py", "layer": "api", "feature": "cart", "bugs": [], "docstring": "Adding an item works."},
+  {"id": "tests/api/test_cart.py::test_totals[one-cable]", "name": "test_totals[one-cable]", "file": "tests/api/test_cart.py", "layer": "api", "feature": "cart", "bugs": ["cart_rounding"], "docstring": "Totals follow the pricing rules."},
+  {"id": "tests/api/test_orders.py::test_history", "name": "test_history", "file": "tests/api/test_orders.py", "layer": "api", "feature": "orders", "bugs": [], "docstring": "History lists orders."},
+  {"id": "tests/api/test_admin.py::test_skipped_one", "name": "test_skipped_one", "file": "tests/api/test_admin.py", "layer": "api", "feature": "admin", "bugs": [], "docstring": "A skipped test."},
+  {"id": "tests/ui/test_cart_ui.py::test_badge[chromium]", "name": "test_badge[chromium]", "file": "tests/ui/test_cart_ui.py", "layer": "ui", "feature": "cart", "bugs": [], "docstring": "The badge updates."},
+  {"id": "tests/ui/test_catalog_ui.py::test_sort[chromium]", "name": "test_sort[chromium]", "file": "tests/ui/test_catalog_ui.py", "layer": "ui", "feature": "catalog", "bugs": ["sort_desc_broken"], "docstring": "Sorting works."}
+]

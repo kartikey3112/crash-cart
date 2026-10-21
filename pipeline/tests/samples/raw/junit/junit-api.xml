@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="pytest tests">
+  <testsuite name="pytest" errors="1" failures="1" skipped="1" tests="4" time="12.5">
+    <testcase classname="tests.api.test_cart" name="test_add_item" time="0.40"/>
+    <testcase classname="tests.api.test_cart" name="test_totals[one-cable]" time="0.30">
+      <failure message="AssertionError: assert 1577 == 1578&#10;  full diff follows">long traceback</failure>
+    </testcase>
+    <testcase classname="tests.api.test_orders" name="test_history" time="0.10">
+      <error message="failed on setup with &quot;ConnectError&quot;">trace</error>
+    </testcase>
+    <testcase classname="tests.api.test_admin" name="test_skipped_one" time="0.00">
+      <skipped type="pytest.skip" message="not today">skip</skipped>
+    </testcase>
+  </testsuite>
+</testsuites>

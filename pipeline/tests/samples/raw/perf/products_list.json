@@ -1,0 +1,10 @@
+{
+  "scenario": "products_list",
+  "path": "/products?page=1&page_size=12",
+  "profile": {"threads": 10, "rampup_s": 5, "duration_s": 60, "think_ms": 100},
+  "p95_budget_ms": 800,
+  "max_error_rate": 0.01,
+  "enabled_bugs": [],
+  "stats": {"samples": 4836, "errors": 0, "error_rate": 0.0, "p50_ms": 12, "p95_ms": 29, "p99_ms": 38, "max_ms": 83, "mean_ms": 13.1, "throughput_rps": 80.85},
+  "passed": true
+}
