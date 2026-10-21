@@ -36,6 +36,10 @@ python -m pipeline.local_run [--suites unit,api,ui,perf] [--bugs a,b] [--perf-du
 - **Unit tests are kept separate.** `junit-unit*.xml` files hold the backend unit tests.
   Their ids are prefixed `store/backend/` and their layer is `unit`, so the dashboard can
   show them in their own section.
+- **In-runner API results are kept separate.** `junit-api-local*.xml` holds the API suite run
+  in CI against a backend started inside the runner. Ids are prefixed `local:` and the layer
+  is `api-local`, so these results never merge with the live API results that share their
+  test names. They're shown as their own group and aren't counted in the system pass rate.
 - **Catalog lookup across browsers.** Catalogs are collected once, with Chromium ids. A
   Firefox or WebKit result is matched to the same test's Chromium entry.
 - **Artifact paths are normalised** to start at `test-results/`, however pytest recorded

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The API suite run against the in-runner backend (CI self-test). Same test ids as the
+     live API file, which the pipeline must keep apart. -->
+<testsuites name="pytest tests">
+  <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="2" time="6.0">
+    <testcase classname="tests.api.test_cart" name="test_add_item" time="0.20"/>
+    <testcase classname="tests.api.test_cart" name="test_totals[one-cable]" time="0.25"/>
+  </testsuite>
+</testsuites>

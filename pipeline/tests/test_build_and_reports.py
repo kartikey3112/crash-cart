@@ -22,8 +22,8 @@ def test_end_to_end_build_writes_all_dashboard_files(raw, site):
     """One build produces the run file, index, catalog, flaky file and downloads."""
     run = run_build(raw, site, "run-1", dashboard_url="https://example.test/dash")
 
-    assert (run["counts"]["total"], run["counts"]["flaky"]) == (8, 1)
-    assert set(run["layers"]) == {"unit", "api", "ui"}
+    assert (run["counts"]["total"], run["counts"]["flaky"]) == (10, 1)
+    assert set(run["layers"]) == {"unit", "api-local", "api", "ui"}
     assert run["coverage"]["percent"] == 98.2 and run["perf"][0]["scenario"] == "products_list"
     assert read_json(site / "data/runs/index.json", [])[0]["id"] == "run-1"
     assert len(read_json(site / "data/catalog.json", {})["tests"]) == 7
@@ -49,8 +49,23 @@ def test_junit_zip_contains_every_input_file(raw, site):
     run_build(raw, site, "run-1")
     with zipfile.ZipFile(site / "reports/run-1/junit.zip") as archive:
         assert sorted(archive.namelist()) == [
-            "junit-api.xml", "junit-ui-chromium.xml", "junit-unit.xml",
+            "junit-api-local.xml", "junit-api.xml", "junit-ui-chromium.xml", "junit-unit.xml",
         ]  # fmt: skip
+
+
+def test_in_runner_api_results_stay_separate_from_live_ones(raw, site):
+    """The same API test run against the in-runner backend and the live store gives two
+    results: the local one is prefixed, has its own layer, and still finds its catalog entry."""
+    run = run_build(raw, site, "run-1")
+    live = [t for t in run["tests"] if t["id"] == "tests/api/test_cart.py::test_totals[one-cable]"]
+    local = [
+        t for t in run["tests"] if t["id"] == "local:tests/api/test_cart.py::test_totals[one-cable]"
+    ]
+    assert [t["status"] for t in live] == ["failed"]
+    assert [(t["status"], t["layer"], t["feature"], t["bugs"]) for t in local] == [
+        ("passed", "api-local", "cart", ["cart_rounding"])
+    ]
+    assert run["layers"]["api-local"]["total"] == 2 and run["layers"]["api"]["total"] == 4
 
 
 def test_second_build_adds_to_history(raw, site):

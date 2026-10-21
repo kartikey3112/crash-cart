@@ -20,15 +20,23 @@ from pathlib import Path
 
 from pipeline import history, inputs, junit, reports
 from pipeline.pdf_summary import render_summary
-from pipeline.run_record import RunMeta, build_run
+from pipeline.run_record import LOCAL_ID_PREFIX, RunMeta, build_run
 
-UNIT_ID_PREFIX = "store/backend/"
+# JUnit file name prefix -> id prefix, so results from different targets never share ids.
+ID_PREFIXES = {
+    "junit-unit": "store/backend/",  # backend unit tests (paths relative to store/backend)
+    "junit-api-local": LOCAL_ID_PREFIX,  # API suite against the in-runner backend
+}
+
+
+def id_prefix_for(filename: str) -> str:
+    return next((p for start, p in ID_PREFIXES.items() if filename.startswith(start)), "")
 
 
 def collect_results(junit_dir: Path) -> tuple[list[junit.TestResult], dict[str, float]]:
     results, seconds = [], {}
     for path in sorted(junit_dir.glob("*.xml")) if junit_dir.is_dir() else []:
-        prefix = UNIT_ID_PREFIX if path.name.startswith("junit-unit") else ""
+        prefix = id_prefix_for(path.name)
         results += junit.fold_retries(junit.parse_attempts(path, prefix))
         seconds[path.stem.removeprefix("junit-")] = junit.suite_seconds(path)
     return results, seconds

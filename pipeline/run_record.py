@@ -6,7 +6,10 @@ from pipeline.inputs import browser_of, catalog_entry
 from pipeline.junit import TestResult
 
 STATUSES = ("passed", "failed", "error", "skipped", "flaky")
-LAYERS = ("unit", "api", "ui", "perf")
+# "api-local" = the API suite run in CI against a backend started inside the runner
+# (self-test). Its ids carry LOCAL_ID_PREFIX so they never merge with the live API results.
+LAYERS = ("unit", "api-local", "api", "ui", "perf")
+LOCAL_ID_PREFIX = "local:"
 
 
 @dataclass(frozen=True)
@@ -43,12 +46,13 @@ def build_run(
 ) -> dict:
     tests = []
     for result in results:
-        entry = catalog_entry(catalog, result.test_id) or {}
+        is_local = result.test_id.startswith(LOCAL_ID_PREFIX)
+        entry = catalog_entry(catalog, result.test_id.removeprefix(LOCAL_ID_PREFIX)) or {}
         tests.append(
             {
                 "id": result.test_id,
                 "name": result.name,
-                "layer": entry.get("layer") or "unknown",
+                "layer": "api-local" if is_local else entry.get("layer") or "unknown",
                 "feature": entry.get("feature") or "unknown",
                 "bugs": entry.get("bugs", []),
                 "browser": browser_of(result.test_id),
