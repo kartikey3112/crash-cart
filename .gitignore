@@ -30,6 +30,7 @@ playwright-report/
 junit*.xml
 *.jtl
 jmeter.log
+perf-results/
 
 # --- Editors / tools ---
 .idea/
