@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Orbit Smartwatch S">
+<rect width="400" height="300" fill="#e0f2fe"/>
+<g fill="#0369a1" stroke="#0369a1"><rect x="176" y="40" width="48" height="40" rx="6"/><rect x="176" y="160" width="48" height="40" rx="6"/><rect x="160" y="78" width="80" height="84" rx="18"/><circle cx="200" cy="120" r="22" fill="#fff"/></g>
+<g font-family="system-ui, sans-serif" font-size="19" font-weight="600" fill="#1f2430"><text x="200" y="238" text-anchor="middle">Orbit Smartwatch S</text></g>
+<text x="384" y="26" text-anchor="end" font-family="monospace" font-size="13" fill="#0369a1">WEA-002</text>
+</svg>

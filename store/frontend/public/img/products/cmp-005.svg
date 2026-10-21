@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Aluminium Laptop Stand">
+<rect width="400" height="300" fill="#ede9fe"/>
+<g fill="#6d28d9" stroke="#6d28d9"><rect x="120" y="60" width="160" height="100" rx="8"/><rect x="132" y="72" width="136" height="76" rx="4" fill="#fff"/><rect x="190" y="160" width="20" height="26"/><rect x="160" y="184" width="80" height="12" rx="6"/></g>
+<g font-family="system-ui, sans-serif" font-size="19" font-weight="600" fill="#1f2430"><text x="200" y="238" text-anchor="middle">Aluminium Laptop Stand</text></g>
+<text x="384" y="26" text-anchor="end" font-family="monospace" font-size="13" fill="#6d28d9">CMP-005</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Braided USB-C Cable 2m">
+<rect width="400" height="300" fill="#fef9c3"/>
+<g fill="#a16207" stroke="#a16207"><rect x="160" y="45" width="80" height="150" rx="14"/><rect x="170" y="62" width="60" height="105" rx="4" fill="#fff"/><circle cx="200" cy="181" r="6" fill="#fff"/></g>
+<g font-family="system-ui, sans-serif" font-size="19" font-weight="600" fill="#1f2430"><text x="200" y="238" text-anchor="middle">Braided USB-C Cable 2m</text></g>
+<text x="384" y="26" text-anchor="end" font-family="monospace" font-size="13" fill="#a16207">PHN-003</text>
+</svg>

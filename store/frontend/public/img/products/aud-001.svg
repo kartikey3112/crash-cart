@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Pulse Wireless Earbuds">
+<rect width="400" height="300" fill="#fde8e1"/>
+<g fill="#c2410c" stroke="#c2410c"><path d="M140 150 v-30 a60 60 0 0 1 120 0 v30" fill="none" stroke-width="14"/><rect x="122" y="140" width="36" height="56" rx="10"/><rect x="242" y="140" width="36" height="56" rx="10"/></g>
+<g font-family="system-ui, sans-serif" font-size="19" font-weight="600" fill="#1f2430"><text x="200" y="238" text-anchor="middle">Pulse Wireless Earbuds</text></g>
+<text x="384" y="26" text-anchor="end" font-family="monospace" font-size="13" fill="#c2410c">AUD-001</text>
+</svg>
