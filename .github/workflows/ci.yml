@@ -78,6 +78,17 @@ jobs:
           ruff check . store/backend
           ruff format --check . store/backend
 
+      - name: Lint the workflow itself (actionlint + shellcheck)
+        run: |
+          base=https://github.com/rhysd/actionlint/releases/download/v1.7.12
+          curl -sSfL -o actionlint.tgz "$base/actionlint_1.7.12_linux_amd64.tar.gz"
+          curl -sSfL "$base/actionlint_1.7.12_checksums.txt" | grep linux_amd64.tar.gz \
+            | sed 's/actionlint_1.7.12_linux_amd64.tar.gz/actionlint.tgz/' | sha256sum -c -
+          tar -xzf actionlint.tgz actionlint && rm actionlint.tgz
+          # Also runs ShellCheck on every run: script (ShellCheck ships with GitHub's runners).
+          ./actionlint -color
+          rm actionlint
+
       - name: Set up Node
         uses: actions/setup-node@v7
         with:
@@ -127,7 +138,7 @@ jobs:
         run: |
           coverage run --data-file=.coverage.api -m uvicorn app.main:app --port 8000 &
           echo $! > uvicorn.pid
-          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000/health && exit 0; sleep 1; done
+          for _ in $(seq 1 30); do curl -sf http://127.0.0.1:8000/health && exit 0; sleep 1; done
           echo "backend did not start"; exit 1
 
       - name: API suite against the in-runner backend
@@ -146,7 +157,7 @@ jobs:
         working-directory: store/backend
         run: |
           kill -INT "$(cat uvicorn.pid)"   # graceful stop so coverage saves its data
-          for i in $(seq 1 15); do kill -0 "$(cat uvicorn.pid)" 2>/dev/null || break; sleep 1; done
+          for _ in $(seq 1 15); do kill -0 "$(cat uvicorn.pid)" 2>/dev/null || break; sleep 1; done
           coverage combine --keep .coverage.unit .coverage.api
           coverage json -o ../../raw/coverage.json
           coverage report --format=markdown >> "$GITHUB_STEP_SUMMARY"
@@ -432,7 +443,7 @@ jobs:
           mkdir -p site
           if git fetch --depth 1 origin results-data; then
             git archive FETCH_HEAD | tar -x -C site
-            echo "Loaded history: $(ls site/data/runs 2>/dev/null | wc -l) files"
+            echo "Loaded history: $(find site/data/runs -name "*.json" | wc -l) files"
           else
             echo "No results-data branch yet: starting a new history"
           fi
