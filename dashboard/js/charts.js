@@ -5,7 +5,7 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 
 export function palette() {
   return {
-    series: [css("--series-1"), css("--series-2"), css("--series-3"), css("--series-4")],
+    series: [1, 2, 3, 4, 5].map((n) => css(`--series-${n}`)),
     surface: css("--surface"),
     grid: css("--grid"),
     axis: css("--axis"),

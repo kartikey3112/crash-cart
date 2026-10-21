@@ -4,7 +4,7 @@
 
 export const REPO_URL = "https://github.com/kartikey3112/crash-cart";
 export const SYSTEM_LAYERS = ["api", "ui", "perf"];
-export const LAYER_LABELS = { api: "API", ui: "UI", perf: "Perf", unit: "Backend unit" };
+export const LAYER_LABELS = { api: "API", ui: "UI", perf: "Perf", unit: "Backend unit", "api-local": "API (in-runner)" };
 
 const PAGES = [
   ["index.html", "Overview"],

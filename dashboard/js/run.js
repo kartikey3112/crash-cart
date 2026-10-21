@@ -103,7 +103,7 @@ function systemSection(run) {
   const buttons = [];
   const select = (layer) => {
     buttons.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.layer === layer)));
-    const tests = layer === "all" ? run.tests.filter((t) => t.layer !== "unit") : run.tests.filter((t) => t.layer === layer);
+    const tests = layer === "all" ? run.tests.filter((t) => SYSTEM_LAYERS.includes(t.layer)) : run.tests.filter((t) => t.layer === layer);
     body.replaceChildren(filteredView(tests, initial));
   };
   for (const layer of ["all", ...layers]) {
@@ -131,22 +131,40 @@ function perfSection(run) {
         el("td", { class: "num" }, p.p95_budget_ms), el("td", {}, statusBadge(p.passed ? "passed" : "failed"))))))));
 }
 
-function unitSection(run) {
-  const tests = run.tests.filter((t) => t.layer === "unit");
+/** A layer shown apart from the system tests (backend unit tests, in-runner API self-test). */
+function separateSection(run, { layer, testId, title, note, tileLabel, extraTile }) {
+  const tests = run.tests.filter((t) => t.layer === layer);
   if (!tests.length) return null;
-  const c = run.layers.unit;
-  const cov = run.coverage;
-  return el("section", { class: "separate", "data-testid": "unit-tests" },
-    el("div", { class: "section-head" },
-      el("h2", {}, "Backend unit tests"),
-      el("span", { class: "muted" }, "In-process tests of the FastAPI backend, kept separate from the system tests above")),
+  const c = run.layers[layer];
+  return el("section", { class: "separate", "data-testid": testId },
+    el("div", { class: "section-head" }, el("h2", {}, title), el("span", { class: "muted" }, note)),
     el("div", { class: "tiles" },
-      el("div", { class: "card tile" }, el("div", { class: "label" }, "Unit tests passed"), el("div", { class: "value" }, `${c.passed}/${c.total}`),
-        el("div", { class: "sub" }, `${c.failed + c.error} failed · ${c.skipped} skipped`)),
-      cov ? el("div", { class: "card tile", "data-testid": "coverage" }, el("div", { class: "label" }, "Backend coverage"), el("div", { class: "value" }, pct(cov.percent)),
-        el("div", { class: "sub" }, `${cov.lines_covered}/${cov.lines_total} lines · ${cov.branches_covered}/${cov.branches_total} branches`)) : null),
-    // A ?status= filter only applies here if some unit test actually has that status.
+      el("div", { class: "card tile" }, el("div", { class: "label" }, tileLabel), el("div", { class: "value" }, `${c.passed + c.flaky}/${c.total - c.skipped}`),
+        el("div", { class: "sub" }, `${c.failed + c.error} failed · ${c.flaky} flaky · ${c.skipped} skipped`)),
+      extraTile),
+    // A ?status= filter only applies here if some test in this section actually has that status.
     el("div", { class: "card" }, filteredView(tests, tests.some((t) => t.status === param("status")) ? param("status") : "all")));
+}
+
+function coverageTile(cov) {
+  return cov ? el("div", { class: "card tile", "data-testid": "coverage" }, el("div", { class: "label" }, "Backend coverage (unit + API)"), el("div", { class: "value" }, pct(cov.percent)),
+    el("div", { class: "sub" }, `${cov.lines_covered}/${cov.lines_total} lines · ${cov.branches_covered}/${cov.branches_total} branches`)) : null;
+}
+
+function localApiSection(run) {
+  return separateSection(run, {
+    layer: "api-local", testId: "api-local-tests", title: "API suite against an in-runner backend",
+    note: "CI self-test: the same API tests against a backend started inside the CI runner (no bug switches). Not counted in the system results above.",
+    tileLabel: "In-runner API tests passed",
+  });
+}
+
+function unitSection(run) {
+  return separateSection(run, {
+    layer: "unit", testId: "unit-tests", title: "Backend unit tests",
+    note: "In-process tests of the FastAPI backend, kept separate from the system tests above",
+    tileLabel: "Unit tests passed", extraTile: coverageTile(run.coverage),
+  });
 }
 
 async function main() {
@@ -159,7 +177,7 @@ async function main() {
     const run = await loadJSON(`data/runs/${encodeURIComponent(id)}.json`);
     document.title = `Run ${run.id} · CrashCart test results`;
     app.replaceChildren(header(run), layerTiles(run));
-    for (const section of [systemSection(run), perfSection(run), unitSection(run)]) {
+    for (const section of [systemSection(run), perfSection(run), localApiSection(run), unitSection(run)]) {
       if (section) app.append(section);
     }
   } catch (error) {

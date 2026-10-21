@@ -1,6 +1,6 @@
 import { durationChart, legend, onThemeChange, palette, passRateChart } from "./charts.js";
 import {
-  LAYER_LABELS, bugPills, commitLink, el, fmtBytes, fmtDate, fmtDuration, fmtShortDate, loadJSON, pct,
+  LAYER_LABELS, SYSTEM_LAYERS, bugPills, commitLink, el, fmtBytes, fmtDate, fmtDuration, fmtShortDate, loadJSON, pct,
   renderShell, runVerdict, showError, statusBadge, systemCounts,
 } from "./common.js";
 
@@ -10,6 +10,7 @@ const SUITES = [
   { key: "api", label: "API" },
   { key: "ui", label: "UI" },
   { key: "perf", label: "Perf" },
+  { key: "api-local", label: "API (in-runner)" },  // added last so the other colours never move
 ];
 
 renderShell("index.html");
@@ -56,6 +57,7 @@ function latestCard(latest) {
 function tiles(latest, index) {
   const c = systemCounts(latest);
   const unit = latest.layers.unit;
+  const local = latest.layers["api-local"];
   const withCoverage = index.find((r) => r.coverage);
   const withPerf = index.find((r) => r.perf && r.perf.length);
   const perfOk = withPerf ? withPerf.perf.filter((p) => p.passed).length : 0;
@@ -69,6 +71,8 @@ function tiles(latest, index) {
     }),
     tile("Backend unit tests", unit ? `${unit.passed} / ${unit.total}` : "-",
       unit ? "reported separately from system tests" : "not run in this run", "tile-unit"),
+    local ? tile("API (in-runner backend)", `${local.passed + local.flaky} / ${local.total - local.skipped}`,
+      "CI self-test, not counted above", "tile-api-local") : null,
     tile("Backend coverage", withCoverage ? pct(withCoverage.coverage.percent) : "-",
       withCoverage ? `${withCoverage.coverage.lines_covered}/${withCoverage.coverage.lines_total} lines` : "no coverage data", "tile-coverage"),
     tile("Perf within p95 budget", withPerf ? `${perfOk} / ${withPerf.perf.length}` : "-",
@@ -128,8 +132,9 @@ async function bugProofSection(index) {
   for (const summary of bugRuns) {
     const run = await loadJSON(`data/runs/${encodeURIComponent(summary.id)}.json`);
     for (const bug of run.enabled_bugs) {
-      // System tests only: backend unit tests for a switch assert the bug's effect on purpose.
-      const targeted = run.tests.filter((t) => t.layer !== "unit" && t.bugs.includes(bug));
+      // Live system tests only: unit tests assert the bug on purpose, and the in-runner API
+      // backend never has bug switches on.
+      const targeted = run.tests.filter((t) => SYSTEM_LAYERS.includes(t.layer) && t.bugs.includes(bug));
       const caught = targeted.filter((t) => t.status === "failed" || t.status === "error");
       const layers = [...new Set(caught.map((t) => LAYER_LABELS[t.layer]))].join(", ");
       rows.push(el("tr", {},

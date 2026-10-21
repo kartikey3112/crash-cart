@@ -27,6 +27,8 @@ def test_tiles_keep_unit_tests_separate(page: Page):
     open_overview(page)
     expect(page.get_by_test_id("tile-system")).to_contain_text("3 / 6")
     expect(page.get_by_test_id("tile-unit")).to_contain_text("1 / 1")
+    # In-runner API results have their own tile and are NOT in the system "3 / 6" above.
+    expect(page.get_by_test_id("tile-api-local")).to_contain_text("2 / 2")
     expect(page.get_by_test_id("tile-coverage")).to_contain_text("98.2%")
     expect(page.get_by_test_id("tile-perf")).to_contain_text("1 / 1")
 

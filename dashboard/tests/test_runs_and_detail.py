@@ -65,6 +65,21 @@ def test_unit_tests_are_a_separate_section(page: Page):
     expect(page.get_by_test_id("system-tests")).not_to_contain_text("test_to_cents_rounds_half_up")
 
 
+def test_in_runner_api_results_are_a_separate_section(page: Page):
+    """The CI self-test's API results get their own section and never mix into the system
+    tests, even though they share test names with the live API suite."""
+    page.goto(f"/run.html?id={CLEAN_RUN}")
+    local = page.get_by_test_id("api-local-tests")
+    expect(local).to_contain_text("API suite against an in-runner backend")
+    expect(local.get_by_test_id("test-row")).to_have_count(2)
+    expect(
+        local.get_by_test_id("test-row").filter(has_text="test_totals[one-cable]")
+    ).to_contain_text("Passed")
+    system = page.get_by_test_id("system-tests")
+    expect(system.get_by_test_id("test-row")).to_have_count(7)  # 4 live API + 3 UI only
+    expect(system).not_to_contain_text("local:tests/api")
+
+
 def test_unknown_run_shows_error(page: Page):
     """Opening a run id that doesn't exist shows an error message."""
     page.goto("/run.html?id=no-such-run")
