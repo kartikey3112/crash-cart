@@ -23,6 +23,31 @@ python -m http.server 8080 -d site     # then open http://localhost:8080
 The pages need a web server, because ES modules and `fetch` don't work from `file://`.
 `python -m pipeline.assemble --site site` re-copies just the dashboard files after edits.
 
+## Tests
+
+`dashboard/tests/` holds a Playwright suite for the dashboard itself:
+
+```powershell
+pytest dashboard/tests                  # Chromium; add --browser firefox / webkit
+```
+
+- **Fixed data.** It runs against a site built by the real pipeline from
+  `pipeline/tests/samples`: two runs, the second with `cart_rounding` switched on. Every
+  expected number is therefore known in advance, and no store backend is needed.
+- **Served locally.** The site is served on a random local port for the session, so the
+  suite can gate publishing in CI.
+- **Network interception** covers the states you can't reach with real data:
+  - the run index returning HTTP 500 or an empty list
+  - the Chart.js CDN being blocked (the data must still render)
+  - an empty flaky list
+  - test names and messages containing `<script>`/`<img onerror>`, to prove they're shown
+    as text and never executed
+- **Also checked:** filters, tabs, search, Trace Viewer links per attempt, every download
+  being a real PDF or zip, one `h1` and a highlighted nav item per page, no sideways
+  scrolling at 400 px, and dark mode.
+- **Not published.** `pipeline/assemble.py` only copies web assets (`.html .css .js .svg`
+  and similar), outside `tests/`, so these files are never published.
+
 ## Design choices
 
 - **Text goes in as text.** Pages build the DOM with a tiny `el()` helper that only ever sets
