@@ -489,7 +489,10 @@ jobs:
 
   deploy:
     name: Deploy dashboard to GitHub Pages
-    needs: publish  # runs only if publish succeeded (incl. the dashboard-test gate)
+    needs: publish
+    # Explicit condition: without it, GitHub skips this job whenever any job further up the
+    # chain was skipped (e.g. live suites before deployment), even though publish succeeded.
+    if: ${{ !cancelled() && needs.publish.result == 'success' }}
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
