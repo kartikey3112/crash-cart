@@ -231,6 +231,8 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0  # full history: ci_wait asks git which commits changed each folder
       - uses: actions/setup-python@v7
         with:
           python-version: ${{ env.PYTHON_VERSION }}
@@ -239,11 +241,12 @@ jobs:
           STORE_API_URL: ${{ secrets.STORE_API_URL }}
           STORE_UI_URL: ${{ secrets.STORE_UI_URL }}
           TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
-          # After a push, wait until Render and Vercel both serve the pushed commit.
-          EXPECT_COMMIT: ${{ github.event_name == 'push' && github.sha || '' }}
+          # After a push, wait until each service runs the latest commit that changed its own
+          # folder (or newer). Render skips deploys when store/backend didn't change.
+          WAIT_FLAG: ${{ github.event_name == 'push' && '--wait-for-deploy' || '' }}
         run: >
           python -m pipeline.ci_wait --api "$STORE_API_URL" --ui "$STORE_UI_URL"
-          --token "$TEST_TOKEN" --expect-commit "$EXPECT_COMMIT"
+          --token "$TEST_TOKEN" ${WAIT_FLAG:+"$WAIT_FLAG"}
 
   live-api:
     name: Live API suite

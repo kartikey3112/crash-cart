@@ -1,7 +1,10 @@
+import subprocess
+from pathlib import Path
+
 import pytest
 
 from pipeline.ci_plan import PlanError, plan, to_outputs
-from pipeline.ci_wait import commit_matches, wait_until
+from pipeline.ci_wait import acceptable_commits, deploy_is_current, wait_until
 
 
 @pytest.mark.parametrize("event", ["push", "schedule"])
@@ -57,20 +60,49 @@ def test_outputs_are_github_style():
 
 
 @pytest.mark.parametrize(
-    ("reported", "expected", "matches"),
+    ("reported", "matches"),
     [
-        ("abc123def456", "abc123def456", True),
-        ("abc123d", "abc123def456", True),  # short SHA reported
-        ("abc123def456", "abc123d", True),
-        ("fff000", "abc123def456", False),
-        ("unknown", "abc123def456", False),
-        (None, "abc123def456", False),
-        ("", "abc123def456", False),
+        ("abc123def456", True),
+        ("abc123d", True),  # platform reports a short SHA
+        ("fff000aaa111", True),  # a newer commit is also fine
+        ("999999", False),
+        ("unknown", False),  # backend without a commit variable
+        ("dev", False),  # frontend built without Vercel's variable
+        (None, False),
+        ("", False),
     ],
 )
-def test_commit_matching(reported, expected, matches):
-    """A deploy counts as current only when it reports the pushed commit (full or short SHA)."""
-    assert commit_matches(reported, expected) is matches
+def test_deploy_is_current(reported, matches):
+    """A deploy is current when it runs any acceptable commit (full or short SHA)."""
+    assert deploy_is_current(reported, ["abc123def456", "fff000aaa111"]) is matches
+
+
+def _commit(repo: Path, path: str, message: str) -> str:
+    file = repo / path
+    file.parent.mkdir(parents=True, exist_ok=True)
+    file.write_text(message, encoding="utf-8")
+    run = lambda *a: subprocess.run(["git", *a], cwd=repo, check=True, capture_output=True)  # noqa: E731
+    run("add", "-A")
+    run("-c", "user.name=t", "-c", "user.email=t@example.invalid", "commit", "-q", "-m", message)
+    return subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo, check=True, capture_output=True, text=True
+    ).stdout.strip()
+
+
+def test_backend_deploy_counts_as_current_after_unrelated_commits(tmp_path):
+    """Reproduces the first live run: a dashboard-only push doesn't redeploy the backend,
+    so the backend's last-changed commit (or anything newer) must be accepted, not only HEAD."""
+    subprocess.run(["git", "init", "-q", "-b", "main"], cwd=tmp_path, check=True)
+    old_backend = _commit(tmp_path, "store/backend/app.py", "backend v1")
+    backend = _commit(tmp_path, "store/backend/app.py", "backend v2")
+    dashboard = _commit(tmp_path, "dashboard/page.js", "dashboard tweak")
+
+    acceptable = acceptable_commits("store/backend", cwd=str(tmp_path))
+
+    assert acceptable == [backend, dashboard]
+    assert deploy_is_current(backend, acceptable)  # Render still on the backend commit: OK
+    assert not deploy_is_current(old_backend, acceptable)  # stale backend: keep waiting
+    assert acceptable_commits("never/touched", cwd=str(tmp_path))  # no crash, any commit ok
 
 
 def fake_clock(step: int):
