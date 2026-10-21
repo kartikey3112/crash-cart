@@ -1,0 +1,27 @@
+[project]
+name = "crashcart-backend"
+version = "1.0.0"
+requires-python = ">=3.14"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-ra --strict-markers"
+markers = [
+    "unit: backend unit test (runs in-process, no network)",
+    "feature(name): store feature area the test covers",
+    "bug(name): bug switch the test is designed to catch",
+]
+
+[tool.ruff]
+line-length = 100
+# py313 syntax on purpose: py314 makes the formatter drop the brackets in `except (A, B):`
+# (PEP 758), which reads like Python 2. The code still runs on 3.14.
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's Depends()/Header() in defaults is the documented pattern.
+extend-immutable-calls = ["fastapi.Depends", "fastapi.Header", "fastapi.Query"]
