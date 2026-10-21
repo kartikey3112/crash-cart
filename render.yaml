@@ -1,0 +1,33 @@
+# Render Blueprint for the CrashCart backend (free web service).
+# Spec: https://render.com/docs/blueprint-spec. Secrets are NOT stored here: entries with
+# `sync: false` are entered in Render's dashboard when the Blueprint is first applied.
+services:
+  - type: web
+    name: crashcart-api
+    runtime: python
+    plan: free
+    rootDir: store/backend
+    buildCommand: pip install -r requirements.txt
+    # One process on purpose: SQLite lives in the instance and is re-seeded on every start.
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    # "commit", not "checksPass": CI waits for this deploy before testing it, so waiting for
+    # CI checks here would deadlock.
+    autoDeployTrigger: commit
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.14.6"
+      - key: CRASHCART_ENVIRONMENT
+        value: production  # refuses to start with any dev-default secret
+      - key: CRASHCART_DATABASE_URL
+        value: sqlite:///./crashcart.db
+      - key: CRASHCART_JWT_SECRET
+        generateValue: true  # Render generates a random secret once
+      - key: CRASHCART_TEST_TOKEN
+        sync: false  # same value as the GitHub secret TEST_TOKEN
+      - key: CRASHCART_ADMIN_EMAIL
+        sync: false  # same value as the GitHub secret ADMIN_EMAIL
+      - key: CRASHCART_ADMIN_PASSWORD
+        sync: false  # same value as the GitHub secret ADMIN_PASSWORD
+      - key: CRASHCART_CORS_ORIGINS
+        sync: false  # the Vercel URL, e.g. https://<project>.vercel.app
