@@ -173,3 +173,201 @@ jobs:
             selftest/
             test-results/
           retention-days: 7
+
+  # ---------------------------------------------------------------------------------------
+  # Live tests against the DEPLOYED store, in sequence: plan -> prepare -> API -> UI -> perf.
+  # Sequential on purpose: API admin tests create products, which would shift the pages the
+  # UI pagination test compares; perf runs last so other suites' traffic can't skew it.
+  # Each suite job runs even if the previous suite failed, so results are always collected.
+  # ---------------------------------------------------------------------------------------
+  plan:
+    name: Plan the live run
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      live: ${{ steps.plan.outputs.live }}
+      run_api: ${{ steps.plan.outputs.run_api }}
+      run_ui: ${{ steps.plan.outputs.run_ui }}
+      run_perf: ${{ steps.plan.outputs.run_perf }}
+      browsers: ${{ steps.plan.outputs.browsers }}
+      bugs: ${{ steps.plan.outputs.bugs }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Decide suites, browsers and bug switches
+        id: plan
+        env:
+          # Only true/false is exposed here, never the URLs themselves.
+          HAS_URLS: ${{ secrets.STORE_API_URL != '' && secrets.STORE_UI_URL != '' }}
+          SUITES: ${{ inputs.suites }}
+          BROWSERS: ${{ inputs.browsers }}
+          BUGS: ${{ inputs.bugs }}
+        run: >
+          python -m pipeline.ci_plan --event "${{ github.event_name }}" --has-urls "$HAS_URLS"
+          --suites "$SUITES" --browsers "$BROWSERS" --bugs "$BUGS"
+
+  prepare:
+    name: Wake and reset the deployed store
+    needs: plan
+    if: needs.plan.outputs.live == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Wait for the deploy, then reset the data
+        env:
+          STORE_API_URL: ${{ secrets.STORE_API_URL }}
+          STORE_UI_URL: ${{ secrets.STORE_UI_URL }}
+          TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+          # After a push, wait until Render and Vercel both serve the pushed commit.
+          EXPECT_COMMIT: ${{ github.event_name == 'push' && github.sha || '' }}
+        run: >
+          python -m pipeline.ci_wait --api "$STORE_API_URL" --ui "$STORE_UI_URL"
+          --token "$TEST_TOKEN" --expect-commit "$EXPECT_COMMIT"
+
+  live-api:
+    name: Live API suite
+    needs: [plan, prepare]
+    if: always() && needs.prepare.result == 'success' && needs.plan.outputs.run_api == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      API_BASE_URL: ${{ secrets.STORE_API_URL }}
+      UI_BASE_URL: ${{ secrets.STORE_UI_URL }}
+      TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      ENABLE_BUGS: ${{ needs.plan.outputs.bugs }}
+      RESET_BEFORE_RUN: "false"  # the prepare job already reset the store once
+      WAKE_TIMEOUT_S: "180"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: tests/requirements.txt
+      - run: pip install -r tests/requirements.txt
+      - name: Run the API suite
+        run: >
+          pytest tests/api -n 4 --junitxml=raw/junit/junit-api.xml
+          --alluredir=raw/allure-results
+      - name: Upload results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: raw-live-api
+          path: raw/
+          retention-days: 7
+
+  live-ui:
+    name: Live UI suite (${{ matrix.browser }})
+    needs: [plan, prepare, live-api]
+    if: always() && needs.prepare.result == 'success' && needs.plan.outputs.run_ui == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      max-parallel: 1  # one browser at a time: UI admin tests also create products
+      matrix:
+        browser: ${{ fromJSON(needs.plan.outputs.browsers) }}
+    env:
+      API_BASE_URL: ${{ secrets.STORE_API_URL }}
+      UI_BASE_URL: ${{ secrets.STORE_UI_URL }}
+      TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      ENABLE_BUGS: ${{ needs.plan.outputs.bugs }}
+      RESET_BEFORE_RUN: "false"  # the prepare job already reset the store once
+      WAKE_TIMEOUT_S: "180"
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: tests/requirements.txt
+      - run: pip install -r tests/requirements.txt
+      - name: Cache Playwright browsers
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ matrix.browser }}-${{ hashFiles('tests/requirements.txt') }}
+      - run: python -m playwright install --with-deps ${{ matrix.browser }}
+      - name: Run the UI suite (one retry; pass-on-retry is reported as flaky)
+        run: >
+          pytest tests/ui --browser ${{ matrix.browser }} --reruns 1
+          --output=raw/test-results --junitxml=raw/junit/junit-ui-${{ matrix.browser }}.xml
+          --alluredir=raw/allure-results
+      - name: Upload results, traces and screenshots
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: raw-live-ui-${{ matrix.browser }}
+          path: raw/
+          retention-days: 7
+
+  live-perf:
+    name: Live perf suite (JMeter)
+    needs: [plan, prepare, live-api, live-ui]
+    if: always() && needs.prepare.result == 'success' && needs.plan.outputs.run_perf == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      API_BASE_URL: ${{ secrets.STORE_API_URL }}
+      UI_BASE_URL: ${{ secrets.STORE_UI_URL }}
+      TEST_TOKEN: ${{ secrets.TEST_TOKEN }}
+      ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+      ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      ENABLE_BUGS: ${{ needs.plan.outputs.bugs }}
+      RESET_BEFORE_RUN: "false"  # the prepare job already reset the store once
+      WAKE_TIMEOUT_S: "180"
+      JMETER_HOME: ${{ github.workspace }}/.tools/apache-jmeter-5.6.3
+      PERF_RESULTS_DIR: raw/perf
+      # Load profile and budgets: repository variables, with the agreed defaults.
+      PERF_USERS: ${{ vars.PERF_USERS || '10' }}
+      PERF_DURATION_S: ${{ vars.PERF_DURATION_S || '60' }}
+      PERF_P95_MS_PRODUCTS_LIST: ${{ vars.PERF_P95_MS_PRODUCTS_LIST || '800' }}
+      PERF_P95_MS_PRODUCT_SEARCH: ${{ vars.PERF_P95_MS_PRODUCT_SEARCH || '800' }}
+      PERF_P95_MS_PRODUCT_DETAIL: ${{ vars.PERF_P95_MS_PRODUCT_DETAIL || '800' }}
+      PERF_P95_MS_CART_READ: ${{ vars.PERF_P95_MS_CART_READ || '800' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: tests/requirements.txt
+      - run: pip install -r tests/requirements.txt
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Cache JMeter
+        id: jmeter-cache
+        uses: actions/cache@v6
+        with:
+          path: .tools/apache-jmeter-5.6.3
+          key: jmeter-5.6.3
+      - name: Download JMeter 5.6.3 and verify its SHA-512
+        if: steps.jmeter-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .tools && cd .tools
+          base=https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3  # keeps every version
+          curl -sSfL -o jmeter.tgz "$base.tgz"
+          echo "$(curl -sSfL "$base.tgz.sha512" | cut -d' ' -f1)  jmeter.tgz" | sha512sum -c -
+          tar -xzf jmeter.tgz && rm jmeter.tgz
+      - name: Run the perf suite
+        run: pytest tests/perf --junitxml=raw/junit/junit-perf.xml --alluredir=raw/allure-results
+      - name: Upload results
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: raw-live-perf
+          path: raw/
+          retention-days: 7
