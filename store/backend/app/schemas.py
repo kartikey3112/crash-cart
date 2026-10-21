@@ -26,6 +26,7 @@ class HealthOut(BaseModel):
     status: Literal["ok"]
     version: str
     database: Literal["ok"]
+    commit: str  # deployed git commit, or "unknown" locally
 
 
 class ResetOut(BaseModel):

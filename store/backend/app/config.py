@@ -3,7 +3,7 @@
 from functools import lru_cache
 from typing import Self
 
-from pydantic import model_validator
+from pydantic import AliasChoices, Field, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Dev-only defaults. Production refuses to start if any secret is still one of these.
@@ -33,6 +33,12 @@ class Settings(BaseSettings):
     # Comma-separated list of origins allowed to call the API from a browser.
     # Local defaults: Vite dev server (5173) and the production preview UI tests use (4173).
     cors_origins: str = "http://localhost:5173,http://localhost:4173"
+
+    # The deployed git commit, reported by /health so CI can wait for a fresh deploy.
+    # Render sets RENDER_GIT_COMMIT automatically; CRASHCART_COMMIT works anywhere else.
+    commit: str = Field(
+        default="unknown", validation_alias=AliasChoices("CRASHCART_COMMIT", "RENDER_GIT_COMMIT")
+    )
 
     @property
     def cors_origin_list(self) -> list[str]:

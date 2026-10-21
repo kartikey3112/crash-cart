@@ -16,6 +16,7 @@ class Health(Contract):
     status: Literal["ok"]
     version: str
     database: Literal["ok"]
+    commit: str = Field(min_length=1)
 
 
 class ErrorDetail(Contract):

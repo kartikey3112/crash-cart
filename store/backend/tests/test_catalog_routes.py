@@ -1,7 +1,10 @@
 import time
 
 import pytest
+from fastapi.testclient import TestClient
 
+from app.config import Settings
+from app.main import create_app
 from tests.helpers import UNIT_TEST_TOKEN, bug_headers
 
 pytestmark = [pytest.mark.unit, pytest.mark.feature("catalog")]
@@ -14,6 +17,22 @@ def test_health_reports_ok(client):
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
     assert response.json()["database"] == "ok"
+
+
+@pytest.mark.feature("health")
+@pytest.mark.parametrize("variable", ["RENDER_GIT_COMMIT", "CRASHCART_COMMIT"])
+def test_health_reports_deployed_commit(monkeypatch, variable):
+    """/health reports the commit from Render's RENDER_GIT_COMMIT or CRASHCART_COMMIT."""
+    monkeypatch.setenv(variable, "abc123def")
+    app = create_app(Settings(_env_file=None, database_url="sqlite://", bcrypt_rounds=4))
+    with TestClient(app) as client:
+        assert client.get("/health").json()["commit"] == "abc123def"
+
+
+@pytest.mark.feature("health")
+def test_health_commit_defaults_to_unknown(client):
+    """Without a commit variable (local runs), /health says 'unknown'."""
+    assert client.get("/health").json()["commit"] == "unknown"
 
 
 def test_six_categories_seeded(client):

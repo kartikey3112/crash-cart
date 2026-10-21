@@ -335,6 +335,10 @@
       },
       "HealthOut": {
         "properties": {
+          "commit": {
+            "title": "Commit",
+            "type": "string"
+          },
           "database": {
             "const": "ok",
             "title": "Database",
@@ -353,7 +357,8 @@
         "required": [
           "status",
           "version",
-          "database"
+          "database",
+          "commit"
         ],
         "title": "HealthOut",
         "type": "object"
@@ -1898,7 +1903,7 @@
     },
     "/health": {
       "get": {
-        "description": "Liveness check. Tests poll this until the free-tier instance has woken up.",
+        "description": "Liveness check. Tests poll this until the free-tier instance has woken up, and CI\ncompares `commit` with the pushed commit to know the new deploy is live.",
         "operationId": "health_health_get",
         "responses": {
           "200": {
