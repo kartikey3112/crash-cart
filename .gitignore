@@ -1,0 +1,38 @@
+# --- Python ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# --- Secrets: never commit real env files ---
+.env
+.env.*
+!.env.example
+
+# --- Local databases ---
+*.db
+*.sqlite3
+
+# --- Node / frontend builds ---
+node_modules/
+dist/
+
+# --- Test output (published by CI, not committed) ---
+allure-results/
+allure-report/
+test-results/
+playwright-report/
+junit*.xml
+*.jtl
+jmeter.log
+
+# --- Editors / tools ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
