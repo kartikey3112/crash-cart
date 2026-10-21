@@ -7,7 +7,7 @@ are separate, in `store/backend/tests`.
 |---|---|---|
 | API | `tests/api` | pytest + httpx, responses validated with pydantic contracts |
 | UI | `tests/ui` | pytest-playwright with page objects |
-| Perf | `tests/perf` | JMeter driven from pytest (Phase 5) |
+| Perf | `tests/perf` | JMeter 5.6.3 driven from pytest, p95 computed in Python |
 
 ## Run locally
 
@@ -45,6 +45,37 @@ python -m playwright install chromium firefox webkit   # first time only
 - **The UI suite runs serially.** At about 35 s it doesn't need workers. The pagination test
   compares page 1 with page 2, so a parallel admin test adding a product mid-test could
   shift items and cause false failures.
+
+### Perf suite
+
+Each perf test runs one JMeter scenario headless. The scenarios are the products list,
+product search, product detail and cart read. Each test fails if p95 latency or the error
+rate is over budget.
+
+```powershell
+# one-time: JMeter 5.6.3 from Apache (check the .sha512) unzipped to %USERPROFILE%\tools,
+# or set JMETER_HOME. Needs Java 17 (JAVA_HOME is put first on PATH for JMeter).
+pytest tests/perf                         # 4 scenarios x 60 s
+$env:PERF_DURATION_S = "20"; pytest tests/perf   # quicker local check
+```
+
+- **One plan, many scenarios.** `jmeter/endpoint_load.jmx` takes every value as a JMeter
+  property: path, users, ramp-up, duration, think time, and the optional token and bug
+  headers. `jmeter_runner.py` writes those properties to a file and passes it with `-q`.
+  They don't go on the command line, because on Windows `cmd.exe` treats the `&` in a query
+  string as a command separator.
+- **p95 is computed in Python** from every sample in the `.jtl` file (nearest-rank
+  percentile), so the number that fails the build is easy to audit.
+- **Each scenario writes `perf-results/<scenario>.json`** with the profile, budget and stats
+  (p50/p95/p99/max, error rate, throughput). The dashboard pipeline reads these.
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `PERF_USERS` / `PERF_RAMPUP_S` / `PERF_DURATION_S` / `PERF_THINK_MS` | 10 / 5 / 60 / 100 | Load profile |
+| `PERF_P95_MS_<SCENARIO>` | 800 | p95 budget, e.g. `PERF_P95_MS_PRODUCTS_LIST` |
+| `PERF_MAX_ERROR_RATE` | 0.01 | Highest allowed share of non-2xx responses |
+| `PERF_RESULTS_DIR` | `perf-results` | Where `.jtl`, `.log` and summary JSON go |
+| `JMETER_HOME` | `%USERPROFILE%\tools\apache-jmeter-5.6.3` | JMeter install |
 
 ## Configuration (environment variables)
 
@@ -92,6 +123,7 @@ python -m playwright install chromium firefox webkit   # first time only
 ```powershell
 python -m tests.tools.prove_bug_switches --suite tests/api
 python -m tests.tools.prove_bug_switches --suite tests/ui --workers 1
+python -m tests.tools.prove_bug_switches --suite tests/perf --workers 1 --bugs slow_products
 ```
 
 This runs a baseline (everything must pass), then the suite once per switch with only that
