@@ -1,0 +1,40 @@
+# CrashCart CI: test the store, publish the results dashboard.
+# Jobs are added step by step (Phase 8); this file currently defines only when and how
+# the workflow runs.
+name: CrashCart tests
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"  # docs-only commits don't need a test run
+  schedule:
+    - cron: "7 21 * * *"  # 21:07 UTC = 02:37 IST, nightly (off the hour, see notes)
+  workflow_dispatch:
+    inputs:
+      suites:
+        description: "Live suites to run (comma-separated): api, ui, perf"
+        type: string
+        default: "api,ui,perf"
+      bugs:
+        description: "Bug switches to enable, comma-separated (empty = none)"
+        type: string
+        default: ""
+      browsers:
+        description: "UI browsers (comma-separated): chromium, firefox, webkit"
+        type: string
+        default: "chromium"
+
+# One run at a time. A new run waits instead of cancelling the one in progress, so two runs
+# never push to results-data together or reset the shared store under each other.
+concurrency:
+  group: crashcart-ci
+  cancel-in-progress: false
+
+# Least privilege by default; jobs that publish ask for more themselves.
+permissions:
+  contents: read
+
+env:
+  PYTHON_VERSION: "3.14"
+  FORCE_COLOR: "1"
