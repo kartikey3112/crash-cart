@@ -59,7 +59,10 @@ def test_missing_shipping_details_are_caught_in_page(checkout_with_item, shopper
     assert shopper.api.orders().json() == []
 
 
-@pytest.mark.bug("checkout_double_submit")
+# Not tagged with the checkout_double_submit bug on purpose: against the deployed store,
+# network latency lets the first checkout empty the cart before the second request lands, so
+# the bug can't be triggered reliably from a browser. The API test (which refills the cart
+# between retries) is the reliable catcher; this test still guards the user-visible outcome.
 def test_double_submit_creates_only_one_order(page, checkout_with_item, shopper):
     """Two rapid submits of the checkout form result in exactly one order."""
     checkout_with_item.fill_shipping(SHIPPING)
