@@ -37,4 +37,139 @@ permissions:
 
 env:
   PYTHON_VERSION: "3.14"
+  NODE_VERSION: "22"
   FORCE_COLOR: "1"
+
+jobs:
+  # ---------------------------------------------------------------------------------------
+  # self-test: everything that needs no deployed site. Runs on every trigger.
+  # Results that go on the dashboard: backend unit tests, the API suite against a backend
+  # started inside the runner (its own "API (in-runner)" group, never mixed with live API
+  # results), test catalogs and combined unit + API coverage.
+  # ---------------------------------------------------------------------------------------
+  self-test:
+    name: Self-test (lint, build, unit, coverage, pipeline, dashboard)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: |
+            store/backend/requirements*.txt
+            tests/requirements.txt
+            pipeline/requirements.txt
+
+      - name: Install Python dependencies
+        run: >
+          pip install -r store/backend/requirements-dev.txt
+          -r tests/requirements.txt -r pipeline/requirements.txt
+
+      - name: Lint (ruff)
+        run: |
+          ruff check . store/backend
+          ruff format --check . store/backend
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: store/frontend/package-lock.json
+
+      - name: Type-check and build the frontend
+        working-directory: store/frontend
+        run: |
+          npm ci
+          npm run build
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ hashFiles('tests/requirements.txt') }}
+
+      - name: Install Chromium for the dashboard tests
+        run: python -m playwright install --with-deps chromium
+
+      - name: Write test catalogs (every system test + every unit test)
+        run: |
+          mkdir -p raw/junit raw/catalog raw/allure-results selftest
+          pytest tests --collect-only -q --catalog-out=raw/catalog/catalog-system.json
+          cd store/backend
+          pytest --collect-only -q -p no:cacheprovider --catalog-out=../../raw/catalog/catalog-unit.json
+
+      - name: Backend unit tests (with coverage)
+        working-directory: store/backend
+        env:
+          COVERAGE_FILE: .coverage.unit
+        run: >
+          pytest -p no:cacheprovider --cov --cov-report=
+          --junitxml=../../raw/junit/junit-unit.xml --alluredir=../../raw/allure-results
+
+      # Throwaway values for the in-runner backend only (never the production secrets).
+      # Scoped to these steps so the unit tests above see a clean environment.
+      - name: Start the backend under coverage
+        if: ${{ !cancelled() }}
+        working-directory: store/backend
+        env:
+          CRASHCART_DATABASE_URL: sqlite:///./ci.db
+          CRASHCART_TEST_TOKEN: ci-test-token
+          CRASHCART_ADMIN_PASSWORD: ci-admin-password
+        run: |
+          coverage run --data-file=.coverage.api -m uvicorn app.main:app --port 8000 &
+          echo $! > uvicorn.pid
+          for i in $(seq 1 30); do curl -sf http://127.0.0.1:8000/health && exit 0; sleep 1; done
+          echo "backend did not start"; exit 1
+
+      - name: API suite against the in-runner backend
+        if: ${{ !cancelled() }}
+        env:
+          API_BASE_URL: http://127.0.0.1:8000
+          TEST_TOKEN: ci-test-token
+          ADMIN_PASSWORD: ci-admin-password
+        # Published as its own "API (in-runner)" group; the file name tells the pipeline so.
+        run: >
+          pytest tests/api -n 4 --junitxml=raw/junit/junit-api-local.xml
+          --alluredir=raw/allure-results
+
+      - name: Stop the backend and combine coverage (unit + API)
+        if: ${{ !cancelled() }}
+        working-directory: store/backend
+        run: |
+          kill -INT "$(cat uvicorn.pid)"   # graceful stop so coverage saves its data
+          for i in $(seq 1 15); do kill -0 "$(cat uvicorn.pid)" 2>/dev/null || break; sleep 1; done
+          coverage combine --keep .coverage.unit .coverage.api
+          coverage json -o ../../raw/coverage.json
+          coverage report --format=markdown >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Pipeline tests
+        if: ${{ !cancelled() }}
+        run: pytest pipeline/tests --junitxml=selftest/junit-pipeline.xml
+
+      - name: Dashboard tests
+        if: ${{ !cancelled() }}
+        run: pytest dashboard/tests --junitxml=selftest/junit-dashboard.xml
+
+      - name: Upload results for the dashboard
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: raw-self-test
+          path: raw/
+          retention-days: 7
+
+      - name: Upload self-test reports (for debugging)
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: self-test-reports
+          path: |
+            selftest/
+            test-results/
+          retention-days: 7

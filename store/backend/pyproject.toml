@@ -13,6 +13,13 @@ markers = [
     "bug(name): bug switch the test is designed to catch",
 ]
 
+[tool.coverage.run]
+# Same settings for unit tests (pytest-cov) and the API run in CI (`coverage run` around
+# uvicorn), so their data files can be combined into one report.
+source = ["app"]
+branch = true
+relative_files = true
+
 [tool.ruff]
 line-length = 100
 # py313 syntax on purpose: py314 makes the formatter drop the brackets in `except (A, B):`
