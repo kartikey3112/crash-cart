@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from pipeline.history import apply_retention, compute_flaky, read_json, save_run
+from pipeline.history import apply_retention, compute_flaky, read_json, rebuild_index, save_run
 
 T0 = datetime(2026, 10, 1, 12, 0, 0)
 
@@ -21,6 +21,7 @@ def make_run(run_id: str, days: float, statuses: dict[str, str], sha="sha1", bug
         "enabled_bugs": list(bugs),
         "workflow_url": "",
         "duration_s": 1.0,
+        "suite_seconds": {"api": 1.0},
         "counts": {},
         "layers": {},
         "tests": tests,
@@ -37,6 +38,17 @@ def test_index_is_newest_first_and_rebuilds_replace(site):
     save_run(site, make_run("old", 0, {"t": "failed"}))
     index = read_json(site / "data/runs/index.json", [])
     assert [r["id"] for r in index] == ["new", "old"]
+
+
+def test_rebuild_index_restores_summaries_from_run_files(site):
+    """Rebuilding the index from run files gives back every run, newest first, with the
+    current summary fields."""
+    save_run(site, make_run("old", 0, {"t": "passed"}))
+    save_run(site, make_run("new", 1, {"t": "passed"}))
+    (site / "data/runs/index.json").write_text("[]", encoding="utf-8")  # simulate a stale index
+    index = rebuild_index(site)
+    assert [r["id"] for r in index] == ["new", "old"]
+    assert "suite_seconds" in index[0]
 
 
 def test_retention_keeps_reports_only_for_newest_runs(site):

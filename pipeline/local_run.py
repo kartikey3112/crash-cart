@@ -18,6 +18,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from pipeline import build
+from pipeline.assemble import assemble
 
 REPO = Path(__file__).resolve().parent.parent
 PY = sys.executable
@@ -33,6 +34,7 @@ def main() -> int:
     parser.add_argument("--suites", default="unit,api,ui,perf")
     parser.add_argument("--bugs", default="")
     parser.add_argument("--perf-duration", default="20", help="seconds per perf scenario")
+    parser.add_argument("--browser", default="chromium", help="chromium, firefox or webkit")
     parser.add_argument("--raw", default="raw")
     parser.add_argument("--site", default="site")
     parser.add_argument("--keep", type=int, default=30)
@@ -62,8 +64,8 @@ def main() -> int:
              f"--junitxml={raw / 'junit' / 'junit-api.xml'}"], env=env)  # fmt: skip
     if "ui" in suites:
         run([PY, "-m", "pytest", "tests/ui", "-q", "--reruns", "1", allure,
-             f"--output={raw / 'test-results'}",
-             f"--junitxml={raw / 'junit' / 'junit-ui-chromium.xml'}"], env=env)  # fmt: skip
+             "--browser", args.browser, f"--output={raw / 'test-results'}",
+             f"--junitxml={raw / 'junit' / f'junit-ui-{args.browser}.xml'}"], env=env)  # fmt: skip
     if "perf" in suites:
         run([PY, "-m", "pytest", "tests/perf", "-q", allure,
              f"--junitxml={raw / 'junit' / 'junit-perf.xml'}"],
@@ -98,6 +100,7 @@ def main() -> int:
             ]
         )  # fmt: skip
     )
+    print(f"Assembled site: {assemble(REPO / args.site)} dashboard files copied")
     return 0
 
 

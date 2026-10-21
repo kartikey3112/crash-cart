@@ -86,7 +86,7 @@ def summary_of(run: dict) -> dict:
     """The small version of a run that goes into runs/index.json."""
     keys = (
         "id", "timestamp", "commit_sha", "branch", "trigger", "enabled_bugs", "workflow_url",
-        "duration_s", "counts", "layers", "coverage", "reports",
+        "duration_s", "suite_seconds", "counts", "layers", "coverage", "reports",
     )  # fmt: skip
     summary = {key: run[key] for key in keys}
     summary["perf"] = [

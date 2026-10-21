@@ -42,6 +42,19 @@ def save_run(site: Path, run: dict) -> list[dict]:
     return index
 
 
+def rebuild_index(site: Path) -> list[dict]:
+    """Regenerate index.json from every run file, e.g. after the summary format changes."""
+    runs_dir = site / "data" / "runs"
+    runs = [read_json(path, None) for path in runs_dir.glob("*.json") if path.name != "index.json"]
+    index = sorted(
+        (summary_of(run) for run in runs if run),
+        key=lambda r: parse_time(r["timestamp"]),
+        reverse=True,
+    )
+    write_json(runs_dir / "index.json", index)
+    return index
+
+
 def apply_retention(site: Path, keep: int) -> list[str]:
     """Keep full reports for the newest `keep` runs; older runs keep only their summary
     data (statuses stay, so history and flaky analysis still work). Returns pruned run ids."""
