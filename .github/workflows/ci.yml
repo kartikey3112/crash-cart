@@ -51,6 +51,9 @@ jobs:
     name: Self-test (lint, build, unit, coverage, pipeline, dashboard)
     runs-on: ubuntu-24.04
     timeout-minutes: 25
+    outputs:
+      # The publish job deploys the dashboard only if its own tests passed.
+      dashboard_ok: ${{ steps.dashboard-tests.outcome == 'success' }}
     steps:
       - name: Check out the repository
         uses: actions/checkout@v7
@@ -153,6 +156,7 @@ jobs:
         run: pytest pipeline/tests --junitxml=selftest/junit-pipeline.xml
 
       - name: Dashboard tests
+        id: dashboard-tests
         if: ${{ !cancelled() }}
         run: pytest dashboard/tests --junitxml=selftest/junit-dashboard.xml
 
@@ -371,3 +375,119 @@ jobs:
           name: raw-live-perf
           path: raw/
           retention-days: 7
+
+  # ---------------------------------------------------------------------------------------
+  # publish: turn this run's raw results into dashboard data, keep the history on the
+  # results-data branch, and prepare the site for Pages. Runs even when tests failed.
+  # ---------------------------------------------------------------------------------------
+  publish:
+    name: Build dashboard data
+    needs: [self-test, plan, prepare, live-api, live-ui, live-perf]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: write  # force-push the results-data branch
+    env:
+      RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+      DASHBOARD_URL: https://kartikey3112.github.io/crash-cart/
+      ALLURE_CMD: ${{ github.workspace }}/.tools/allure-2.46.1/bin/allure
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: pipeline/requirements.txt
+      - run: pip install -r pipeline/requirements.txt
+
+      - uses: actions/setup-java@v6  # the Allure CLI runs on Java
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Cache the Allure CLI
+        id: allure-cache
+        uses: actions/cache@v6
+        with:
+          path: .tools/allure-2.46.1
+          key: allure-2.46.1
+      - name: Download Allure 2.46.1 from Maven Central and verify its SHA-512
+        if: steps.allure-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p .tools && cd .tools
+          base=https://repo1.maven.org/maven2/io/qameta/allure/allure-commandline/2.46.1/allure-commandline-2.46.1.zip
+          curl -sSfL -o allure.zip "$base"
+          echo "$(curl -sSfL "$base.sha512" | cut -d' ' -f1)  allure.zip" | sha512sum -c -
+          unzip -q allure.zip && rm allure.zip
+
+      - name: Collect every job's raw results into one folder
+        uses: actions/download-artifact@v8
+        with:
+          pattern: raw-*
+          path: raw
+          merge-multiple: true  # junit/, perf/, allure-results/ ... from all jobs together
+
+      - name: Fetch the result history (data/ and reports/) from the results-data branch
+        run: |
+          mkdir -p site
+          if git fetch --depth 1 origin results-data; then
+            git archive FETCH_HEAD | tar -x -C site
+            echo "Loaded history: $(ls site/data/runs 2>/dev/null | wc -l) files"
+          else
+            echo "No results-data branch yet: starting a new history"
+          fi
+
+      - name: Build dashboard data, downloads and retention (newest 30 runs keep reports)
+        env:
+          BUGS: ${{ needs.plan.outputs.bugs }}
+          WORKFLOW_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: >
+          python -m pipeline.build --raw raw --site site --run-id "$RUN_ID"
+          --sha "${{ github.sha }}" --branch "${{ github.ref_name }}"
+          --trigger "${{ github.event_name }}" --bugs "$BUGS"
+          --workflow-url "$WORKFLOW_URL" --dashboard-url "$DASHBOARD_URL" --keep 30
+
+      - name: Save the history to results-data (one fresh commit, so it never grows)
+        run: |
+          # 1. Commit data/ + reports/ as a single parentless commit in a scratch repo.
+          mkdir history && cp -r site/data site/reports history/
+          git -C history init -q -b results-data
+          git -C history add -A
+          git -C history -c user.name="crashcart-ci" \
+            -c user.email="crashcart-ci@users.noreply.github.com" \
+            commit -q -m "Results after run $RUN_ID (${{ github.sha }})"
+          # 2. Bring that commit into the main checkout and force-push it from there,
+          #    using the credentials actions/checkout already set up.
+          git fetch -q ./history results-data:refs/heads/ci-results-data
+          git push --force -q origin refs/heads/ci-results-data:refs/heads/results-data
+          echo "results-data now holds $(git ls-tree -r --name-only ci-results-data | wc -l) files"
+
+      - name: Add the dashboard pages to the site
+        run: python -m pipeline.assemble --site site
+
+      - name: Stop here if the dashboard's own tests failed (results are already saved)
+        if: needs.self-test.outputs.dashboard_ok != 'true'
+        run: |
+          echo "::error::Dashboard tests failed or didn't run, so the dashboard is not deployed."
+          exit 1
+
+      - name: Upload the site for GitHub Pages
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+
+  deploy:
+    name: Deploy dashboard to GitHub Pages
+    needs: publish  # runs only if publish succeeded (incl. the dashboard-test gate)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write  # deploy-pages proves its identity to Pages with an OIDC token
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v5
