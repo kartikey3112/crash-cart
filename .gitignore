@@ -26,11 +26,16 @@ dist/
 allure-results/
 allure-report/
 test-results/
+!pipeline/tests/samples/raw/test-results/
 playwright-report/
 junit*.xml
+!pipeline/tests/samples/raw/junit/*.xml
 *.jtl
 jmeter.log
 perf-results/
+# pipeline output when run locally (CI publishes these instead)
+/raw/
+/site/
 
 # --- Editors / tools ---
 .idea/
