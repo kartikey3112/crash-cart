@@ -68,6 +68,22 @@ def test_data_load_failure_shows_error(page: Page):
     expect(page.get_by_test_id("load-error")).to_contain_text("HTTP 500")
 
 
+def test_run_without_live_tests_says_so(page: Page):
+    """A run with only self-test results (before deployment) explains that no live tests ran
+    instead of showing '- of 0 system tests'."""
+
+    def self_test_only(route):
+        index = route.fetch().json()
+        for layer in ("api", "ui", "perf"):
+            index[0]["layers"].pop(layer, None)
+        route.fulfill(json=index)
+
+    page.route("**/data/runs/index.json", self_test_only)
+    open_overview(page)
+    expect(page.get_by_test_id("no-live-tests")).to_contain_text("No live system tests")
+    expect(page.get_by_test_id("latest-run")).not_to_contain_text("of 0 system tests")
+
+
 def test_empty_history_shows_empty_state(page: Page):
     """With no runs published yet, the overview says so."""
     page.route("**/data/runs/index.json", lambda route: route.fulfill(json=[]))

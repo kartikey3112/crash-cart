@@ -42,8 +42,11 @@ function latestCard(latest) {
     el("div", { class: "grid grid-2" },
       el("div", {},
         statusBadge(runVerdict(latest), true),
-        el("div", { class: "hero", style: "margin-top:0.6rem" }, pct(c.pass_rate)),
-        el("div", { class: "ink-2" }, `of ${c.total - c.skipped} system tests passed (API, UI, perf)`)),
+        c.total
+          ? [el("div", { class: "hero", style: "margin-top:0.6rem" }, pct(c.pass_rate)),
+             el("div", { class: "ink-2" }, `of ${c.total - c.skipped} system tests passed (API, UI, perf)`)]
+          : el("p", { class: "ink-2", "data-testid": "no-live-tests" },
+              "No live system tests in this run (the deployed store isn't configured yet, or the suites were skipped). Self-test results are below.")),
       el("dl", { class: "kv" },
         el("dt", {}, "Run"), el("dd", { class: "mono" }, latest.id),
         el("dt", {}, "When"), el("dd", {}, fmtDate(latest.timestamp)),
