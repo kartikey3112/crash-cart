@@ -6,7 +6,7 @@ are separate, in `store/backend/tests`.
 | Layer | Folder | Tools |
 |---|---|---|
 | API | `tests/api` | pytest + httpx, responses validated with pydantic contracts |
-| UI | `tests/ui` | pytest-playwright (Phase 4) |
+| UI | `tests/ui` | pytest-playwright with page objects |
 | Perf | `tests/perf` | JMeter driven from pytest (Phase 5) |
 
 ## Run locally
@@ -19,12 +19,39 @@ pytest tests/api -n 4            # 4 parallel workers
 pytest tests/api --alluredir=allure-results --junitxml=junit-api.xml
 ```
 
+### UI suite
+
+The UI tests run against the frontend's **production build**, served by `vite preview`
+on port 4173. That's the same bundle Vercel serves:
+
+```powershell
+cd store/frontend; npm run build; npx vite preview --port 4173   # keep running
+# from the repo root, with the backend also running:
+pytest tests/ui                              # Chromium (default)
+pytest tests/ui --browser firefox            # or webkit
+pytest tests/ui --reruns 1                   # CI setting: one retry; pass-on-retry = flaky
+python -m playwright install chromium firefox webkit   # first time only
+```
+
+- **Page objects** live in `tests/ui/pages/`. Tests never use raw selectors. Locators use
+  `data-testid`, and catalog actions wait for the `/products` response before reading the page.
+- **Setup goes through the API.** Users are registered over HTTP and their token is put into
+  the page's `localStorage`. Carts are filled the same way. Setup never carries bug headers,
+  so only the browser's own requests see the injected bug.
+- **Bug switches reach the browser** through Playwright's `extra_http_headers`.
+- **On failure:** pytest-playwright keeps a trace and a screenshot under `test-results/`, and
+  a full-page screenshot plus the URL are attached to the Allure report. Open a trace with
+  `playwright show-trace test-results/<test>/trace.zip`.
+- **The UI suite runs serially.** At about 35 s it doesn't need workers. The pagination test
+  compares page 1 with page 2, so a parallel admin test adding a product mid-test could
+  shift items and cause false failures.
+
 ## Configuration (environment variables)
 
 | Variable | Default | Meaning |
 |---|---|---|
 | `API_BASE_URL` | `http://127.0.0.1:8000` | Backend under test |
-| `UI_BASE_URL` | `http://localhost:5173` | Frontend under test |
+| `UI_BASE_URL` | `http://localhost:4173` | Frontend under test |
 | `TEST_TOKEN` | `dev-test-token` | Must match the backend's `CRASHCART_TEST_TOKEN` |
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | dev defaults | Seeded admin account |
 | `WAKE_TIMEOUT_S` | `120` | How long to wait for a sleeping free-tier backend |
@@ -64,6 +91,7 @@ pytest tests/api --alluredir=allure-results --junitxml=junit-api.xml
 
 ```powershell
 python -m tests.tools.prove_bug_switches --suite tests/api
+python -m tests.tools.prove_bug_switches --suite tests/ui --workers 1
 ```
 
 This runs a baseline (everything must pass), then the suite once per switch with only that

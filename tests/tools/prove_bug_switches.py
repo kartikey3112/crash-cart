@@ -33,8 +33,14 @@ def run_pytest(
     if workers > 1:
         cmd += ["-n", str(workers)]
     started = time.monotonic()
+    # Output is captured only to keep the console quiet; results come from the JUnit file.
+    # Decode as UTF-8: Windows' default code page can't read some of Playwright's output.
     subprocess.run(
-        cmd + extra_args, env={**os.environ, **extra_env}, capture_output=True, text=True
+        cmd + extra_args,
+        env={**os.environ, **extra_env},
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
     )
     return time.monotonic() - started
 
