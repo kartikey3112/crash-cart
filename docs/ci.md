@@ -43,7 +43,10 @@ Every suite job still runs if the previous one failed, so results are always col
 **Dashboard gate.** If the dashboard's own tests fail, the run's results are still saved to
 `results-data`, but the site isn't deployed and the workflow run is marked failed.
 
-## Secrets (Settings → Secrets and variables → Actions → **Secrets**)
+## Secrets (Settings → Secrets and variables → Actions → **Secrets** → *Repository secrets*)
+
+Use **repository** secrets. Environment secrets only reach jobs that declare that environment,
+and the test jobs don't declare one, so the secrets would arrive empty.
 
 | Secret | Value | Must match |
 |---|---|---|

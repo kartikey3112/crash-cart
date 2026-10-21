@@ -58,7 +58,9 @@ errors in the browser console.
 
 Details: [docs/ci.md](ci.md).
 
-- **Settings → Secrets and variables → Actions → Secrets:**
+- **Settings → Secrets and variables → Actions → Secrets → "New repository secret".** Use
+  **repository** secrets, not environment secrets: the test jobs don't use a GitHub
+  environment, so environment secrets would reach them empty.
   - `STORE_API_URL`, `STORE_UI_URL`
   - `TEST_TOKEN`, `ADMIN_EMAIL`, `ADMIN_PASSWORD` (the same values as on Render)
 - **Settings → Pages → Source: GitHub Actions.**
