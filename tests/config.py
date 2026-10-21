@@ -1,6 +1,7 @@
 """Run configuration for the system tests, read from environment variables.
 
-Defaults target a local stack (backend on :8000, frontend on :5173) with dev secrets.
+Defaults target a local stack with dev secrets: backend on :8000 and the frontend's
+production build served by `vite preview` on :4173.
 CI overrides every value from GitHub Secrets.
 """
 
@@ -45,7 +46,7 @@ def load_config() -> RunConfig:
     bugs = tuple(b.strip() for b in os.getenv("ENABLE_BUGS", "").split(",") if b.strip())
     return RunConfig(
         api_base_url=os.getenv("API_BASE_URL", "http://127.0.0.1:8000").rstrip("/"),
-        ui_base_url=os.getenv("UI_BASE_URL", "http://localhost:5173").rstrip("/"),
+        ui_base_url=os.getenv("UI_BASE_URL", "http://localhost:4173").rstrip("/"),
         test_token=os.getenv("TEST_TOKEN", "dev-test-token"),
         admin_email=os.getenv("ADMIN_EMAIL", "admin@crashcart.test"),
         admin_password=os.getenv("ADMIN_PASSWORD", "admin-dev-password"),

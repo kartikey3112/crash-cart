@@ -31,7 +31,8 @@ class Settings(BaseSettings):
     admin_password: str = _DEV_ADMIN_PASSWORD
 
     # Comma-separated list of origins allowed to call the API from a browser.
-    cors_origins: str = "http://localhost:5173"
+    # Local defaults: Vite dev server (5173) and the production preview UI tests use (4173).
+    cors_origins: str = "http://localhost:5173,http://localhost:4173"
 
     @property
     def cors_origin_list(self) -> list[str]:
