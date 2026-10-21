@@ -1,0 +1,8 @@
+# Lint/format rules for tests/ and pipeline/ (store/backend has its own, identical, config).
+line-length = 100
+# py313 syntax on purpose: py314 makes the formatter drop the brackets in `except (A, B):`.
+target-version = "py313"
+extend-exclude = ["store"]
+
+[lint]
+select = ["E", "F", "I", "B", "UP"]
