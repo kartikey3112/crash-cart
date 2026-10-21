@@ -45,8 +45,12 @@ Free-tier behaviour to expect:
 1. In Vercel, choose **Add New → Project**, import `crash-cart`, and set **Root Directory** to
    `store/frontend`. Vercel detects Vite.
 2. Add an environment variable: `VITE_API_BASE_URL` = the Render URL (no trailing slash).
-3. Deploy and note the URL (`https://<project>.vercel.app`).
-4. **Check:** `<url>/version.json` shows `{"commit":"<sha>"}`, and the shop loads products.
+3. **Settings → Git → Ignored Build Step → "Only build production".** CI pushes a
+   `results-data` branch on every run (it holds only the dashboard data). Without this
+   setting, Vercel tries to build that branch as a preview, fails because it has no
+   `store/frontend`, and emails you a failure after every run.
+4. Deploy and note the URL (`https://<project>.vercel.app`).
+5. **Check:** `<url>/version.json` shows `{"commit":"<sha>"}`, and the shop loads products.
 
 ## 4. Point the backend's CORS at the frontend
 
