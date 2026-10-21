@@ -117,7 +117,7 @@ directly:
 | **11 / 11** injected bugs caught on the **live** system | 3 manual CI runs, 0 unexpected failures ([details](#-bug-switches-proving-the-tests-work)) |
 | **98.3%** backend line coverage | unit tests plus the API suite, run under coverage in CI (751/761 lines) |
 | **13 min 28 s** for a full CI run | self-test, live API, UI and perf suites, publish and deploy ([run 39682285062](https://github.com/kartikey3112/crash-cart/actions/runs/39682285062)) |
-| **0** flaky tests | across all 4 runs without injected bugs so far (UI tests get one retry; a pass on retry is reported as flaky) |
+| **0** flaky tests | in every run without injected bugs so far ([live count](https://kartikey3112.github.io/crash-cart/flaky.html)). UI tests get one retry; a pass on retry is reported as flaky. |
 | **3** browsers | UI suite passed 32/32 on Chromium, Firefox and WebKit. CI uses Chromium automatically; other browsers on demand. |
 | **142–489 ms** p95 on Render's free tier | first full run, JMeter, 10 users × 60 s per scenario. Budgets of 400–1000 ms fail the run on regression. |
 | **$0** | Render free, Vercel Hobby, GitHub Pages and GitHub Actions |
