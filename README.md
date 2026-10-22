@@ -42,6 +42,7 @@
 - [Run it locally](#-run-it-locally)
 - [Repository map](#-repository-map)
 - [Lessons from real failures](#-lessons-from-real-failures)
+- [Long-term test analysis: Noisefloor](#-long-term-test-analysis-noisefloor)
 - [Tech stack](#-tech-stack)
 
 ---
@@ -525,6 +526,22 @@ Build Step*.
   separator, so JMeter settings now go through a properties file.
 
 </details>
+
+---
+
+## 🔬 Long-term test analysis: Noisefloor
+
+[**Noisefloor**](https://github.com/kartikey3112/noise-floor) is a companion data pipeline.
+A local Jenkins builds this repo's
+[`noisefloor-demo`](https://github.com/kartikey3112/crash-cart/tree/noisefloor-demo) branch
+over and over, and Noisefloor loads every build into a DuckDB star schema, with dbt, to find
+**flaky tests** (passed and failed on the same commit), **30-day flip rates** and **runtime
+regressions** (a test getting much slower than its own normal).
+
+That branch adds demo tests that are flaky or slow on purpose, with a published answer key, so
+detection can be checked against known right answers. They're switched off everywhere else, so
+this repo's own CI never runs them.
+[**See the Noisefloor report →**](https://kartikey3112.github.io/noise-floor/)
 
 ---
 
