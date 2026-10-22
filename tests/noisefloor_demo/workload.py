@@ -9,7 +9,7 @@ import random
 import time
 
 ORDER_COUNT = 100
-SEARCH_CACHE_SIZE = 128
+SEARCH_CACHE_SIZE = 0  # no caching, so every search returns fresh results
 TAX_LOOKUPS = 5
 EXPORT_ROWS = 500
 EXPORT_BATCH_SIZE = 100

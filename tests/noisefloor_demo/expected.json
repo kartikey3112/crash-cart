@@ -71,10 +71,10 @@
       "suite": "demo",
       "classname": "tests.noisefloor_demo.test_demo_slow",
       "test_name": "test_demo_product_search_repeats",
-      "designed_as": "stable",
+      "designed_as": "slows_down",
       "baseline_s": 0.27,
-      "slows_down_at_commit": null,
-      "slowed_s": null
+      "slows_down_at_commit": "refactor(demo): turn off the product search cache",
+      "slowed_s": 2.0
     },
     {
       "suite": "demo",
