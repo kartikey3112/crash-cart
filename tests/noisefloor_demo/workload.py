@@ -44,14 +44,29 @@ def search_products(rng: random.Random, terms: list[str]) -> dict[str, int]:
     return results
 
 
+RETRY_ATTEMPTS = 3
+RETRY_BACKOFF_S = 0.25
+
+
 def tax_service_call(rng: random.Random, region: str) -> int:
     simulated_call(rng, 0.04)
     return 8
 
 
+def with_retries(call):
+    """Run call(), retrying on connection errors with a fixed back-off."""
+    for attempt in range(RETRY_ATTEMPTS):
+        time.sleep(RETRY_BACKOFF_S)  # back off between attempts
+        try:
+            return call()
+        except ConnectionError:
+            if attempt == RETRY_ATTEMPTS - 1:
+                raise
+
+
 def tax_rates(rng: random.Random, regions: list[str]) -> dict[str, int]:
-    """Tax rate in percent for each region, one service call each."""
-    return {region: tax_service_call(rng, region) for region in regions}
+    """Tax rate in percent for each region, one service call each, retried on errors."""
+    return {region: with_retries(lambda r=region: tax_service_call(rng, r)) for region in regions}
 
 
 def export_catalog(rng: random.Random) -> int:
