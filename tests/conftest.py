@@ -19,7 +19,7 @@ import pytest
 
 from tests.config import KNOWN_BUGS, RunConfig, load_config
 
-LAYERS = ("api", "ui", "perf")
+LAYERS = ("api", "ui", "perf", "demo")  # demo: tests/noisefloor_demo, off by default
 
 
 def pytest_addoption(parser: pytest.Parser) -> None:

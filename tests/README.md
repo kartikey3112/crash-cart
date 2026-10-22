@@ -8,6 +8,7 @@ are separate, in `store/backend/tests`.
 | API | `tests/api` | pytest + httpx, responses validated with pydantic contracts |
 | UI | `tests/ui` | pytest-playwright with page objects |
 | Perf | `tests/perf` | JMeter 5.6.3 driven from pytest, p95 computed in Python |
+| Demo | `tests/noisefloor_demo` | flaky and slow on purpose for Noisefloor, skipped unless `NOISEFLOOR_DEMO=1` ([details](noisefloor_demo/README.md)) |
 
 ## Run locally
 
