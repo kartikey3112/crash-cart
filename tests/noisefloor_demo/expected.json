@@ -89,10 +89,10 @@
       "suite": "demo",
       "classname": "tests.noisefloor_demo.test_demo_slow",
       "test_name": "test_demo_catalog_export_writes_every_row",
-      "designed_as": "stable",
+      "designed_as": "slows_down",
       "baseline_s": 0.21,
-      "slows_down_at_commit": null,
-      "slowed_s": null
+      "slows_down_at_commit": "refactor(demo): write the catalog export one row at a time",
+      "slowed_s": 1.2
     }
   ]
 }

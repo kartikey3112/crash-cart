@@ -12,7 +12,7 @@ ORDER_COUNT = 100
 SEARCH_CACHE_SIZE = 0  # no caching, so every search returns fresh results
 TAX_LOOKUPS = 5
 EXPORT_ROWS = 500
-EXPORT_BATCH_SIZE = 100
+EXPORT_BATCH_SIZE = 1  # one row per write, so a failed write loses at most one row
 
 
 def simulated_call(rng: random.Random, seconds: float) -> None:
