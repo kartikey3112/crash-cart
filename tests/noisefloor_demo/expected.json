@@ -62,10 +62,10 @@
       "suite": "demo",
       "classname": "tests.noisefloor_demo.test_demo_slow",
       "test_name": "test_demo_order_history_page",
-      "designed_as": "stable",
+      "designed_as": "slows_down",
       "baseline_s": 0.2,
-      "slows_down_at_commit": null,
-      "slowed_s": null
+      "slows_down_at_commit": "refactor(demo): load order items with one query per order",
+      "slowed_s": 1.2
     },
     {
       "suite": "demo",

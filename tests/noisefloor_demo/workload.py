@@ -21,9 +21,12 @@ def simulated_call(rng: random.Random, seconds: float) -> None:
 
 
 def load_order_history(rng: random.Random) -> list[dict]:
-    """Every order with its item count. One query fetches the items for all orders."""
-    simulated_call(rng, 0.20)
-    return [{"order_id": order_id, "items": 2} for order_id in range(ORDER_COUNT)]
+    """Every order with its item count, loading each order's items on their own."""
+    orders = []
+    for order_id in range(ORDER_COUNT):
+        simulated_call(rng, 0.012)  # one query per order
+        orders.append({"order_id": order_id, "items": 2})
+    return orders
 
 
 def search_products(rng: random.Random, terms: list[str]) -> dict[str, int]:
