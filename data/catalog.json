@@ -1,0 +1,2829 @@
+{
+ "generated_at": "2026-10-24T00:04:07+00:00",
+ "tests": [
+  {
+   "id": "tests/api/test_admin.py::test_admin_endpoints_require_login",
+   "name": "test_admin_endpoints_require_login",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Anonymous requests to admin endpoints are 401."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_admin_list_includes_soft_deleted",
+   "name": "test_admin_list_includes_soft_deleted",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "The admin product list includes inactive products, each matching the contract."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_rejects_invalid_fields[name-empty]",
+   "name": "test_create_rejects_invalid_fields[name-empty]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format or empty name is a 422."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_rejects_invalid_fields[price-negative]",
+   "name": "test_create_rejects_invalid_fields[price-negative]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format or empty name is a 422."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_rejects_invalid_fields[price-too-high]",
+   "name": "test_create_rejects_invalid_fields[price-too-high]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format or empty name is a 422."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_rejects_invalid_fields[price-zero]",
+   "name": "test_create_rejects_invalid_fields[price-zero]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format or empty name is a 422."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_rejects_invalid_fields[sku-lowercase]",
+   "name": "test_create_rejects_invalid_fields[sku-lowercase]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format or empty name is a 422."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_rejects_invalid_fields[sku-short]",
+   "name": "test_create_rejects_invalid_fields[sku-short]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format or empty name is a 422."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_rejects_invalid_fields[stock-negative]",
+   "name": "test_create_rejects_invalid_fields[stock-negative]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format or empty name is a 422."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_create_with_unknown_category_is_422",
+   "name": "test_create_with_unknown_category_is_422",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A product must belong to an existing category."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_created_product_is_visible_to_shoppers",
+   "name": "test_created_product_is_visible_to_shoppers",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A product created by an admin is immediately available in the public catalog."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_customers_cannot_use_admin_endpoints[create]",
+   "name": "test_customers_cannot_use_admin_endpoints[create]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A logged-in customer gets 403 from every admin endpoint."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_customers_cannot_use_admin_endpoints[delete]",
+   "name": "test_customers_cannot_use_admin_endpoints[delete]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A logged-in customer gets 403 from every admin endpoint."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_customers_cannot_use_admin_endpoints[list]",
+   "name": "test_customers_cannot_use_admin_endpoints[list]",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A logged-in customer gets 403 from every admin endpoint."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_deleting_twice_is_404",
+   "name": "test_deleting_twice_is_404",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A product that is already deleted can't be deleted again."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_duplicate_sku_is_409",
+   "name": "test_duplicate_sku_is_409",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "SKUs are unique: reusing a seeded SKU is a 409."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_partial_update_changes_only_sent_fields",
+   "name": "test_partial_update_changes_only_sent_fields",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "PATCH with only a price leaves the name and stock unchanged."
+  },
+  {
+   "id": "tests/api/test_admin.py::test_soft_delete_hides_product_from_shoppers",
+   "name": "test_soft_delete_hides_product_from_shoppers",
+   "file": "tests/api/test_admin.py",
+   "layer": "api",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A deleted product disappears from the catalog but remains, inactive, for admins."
+  },
+  {
+   "id": "tests/api/test_health_and_support.py::test_openapi_spec_lists_every_endpoint",
+   "name": "test_openapi_spec_lists_every_endpoint",
+   "file": "tests/api/test_health_and_support.py",
+   "layer": "api",
+   "feature": "api-contract",
+   "bugs": [],
+   "docstring": "The live OpenAPI spec documents every endpoint the store promises."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_duplicate_email_is_409_case_insensitive",
+   "name": "test_duplicate_email_is_409_case_insensitive",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Registering the same email again, even in different case, is a 409 conflict."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_failed_login_does_not_reveal_which_part_was_wrong[unknown-email]",
+   "name": "test_failed_login_does_not_reveal_which_part_was_wrong[unknown-email]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Wrong password and unknown email both give the same 401 invalid_credentials."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_failed_login_does_not_reveal_which_part_was_wrong[wrong-password]",
+   "name": "test_failed_login_does_not_reveal_which_part_was_wrong[wrong-password]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Wrong password and unknown email both give the same 401 invalid_credentials."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_login_returns_working_token",
+   "name": "test_login_returns_working_token",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "A valid login returns a bearer token that /auth/me accepts."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_logout_is_client_side",
+   "name": "test_logout_is_client_side",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "JWTs are stateless: once the client drops the token, protected calls are 401."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_malformed_email_is_422[]",
+   "name": "test_malformed_email_is_422[]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed email addresses are rejected at registration."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_malformed_email_is_422[a@b]",
+   "name": "test_malformed_email_is_422[a@b]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed email addresses are rejected at registration."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_malformed_email_is_422[plainaddress]",
+   "name": "test_malformed_email_is_422[plainaddress]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed email addresses are rejected at registration."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_malformed_email_is_422[two words@example.test]",
+   "name": "test_malformed_email_is_422[two words@example.test]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed email addresses are rejected at registration."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_me_rejects_garbage_token[fake-jwt]",
+   "name": "test_me_rejects_garbage_token[fake-jwt]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Malformed bearer tokens are rejected with 401."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_me_rejects_garbage_token[garbage]",
+   "name": "test_me_rejects_garbage_token[garbage]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Malformed bearer tokens are rejected with 401."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_me_rejects_garbage_token[word]",
+   "name": "test_me_rejects_garbage_token[word]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Malformed bearer tokens are rejected with 401."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_me_rejects_tampered_token",
+   "name": "test_me_rejects_tampered_token",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Changing the token's payload (role -> admin) without re-signing it is rejected."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_me_requires_token",
+   "name": "test_me_requires_token",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "/auth/me without a token is 401 and advertises the Bearer scheme."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_password_length_boundaries[7-chars]",
+   "name": "test_password_length_boundaries[7-chars]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords must be 8+ characters and at most 72 bytes (bcrypt's limit)."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_password_length_boundaries[72-bytes]",
+   "name": "test_password_length_boundaries[72-bytes]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords must be 8+ characters and at most 72 bytes (bcrypt's limit)."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_password_length_boundaries[73-bytes]",
+   "name": "test_password_length_boundaries[73-bytes]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords must be 8+ characters and at most 72 bytes (bcrypt's limit)."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_password_length_boundaries[74-bytes-multibyte]",
+   "name": "test_password_length_boundaries[74-bytes-multibyte]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords must be 8+ characters and at most 72 bytes (bcrypt's limit)."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_password_length_boundaries[8-chars]",
+   "name": "test_password_length_boundaries[8-chars]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords must be 8+ characters and at most 72 bytes (bcrypt's limit)."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_register_missing_field_is_422[no-email]",
+   "name": "test_register_missing_field_is_422[no-email]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Each required registration field is really required."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_register_missing_field_is_422[no-name]",
+   "name": "test_register_missing_field_is_422[no-name]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Each required registration field is really required."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_register_missing_field_is_422[no-password]",
+   "name": "test_register_missing_field_is_422[no-password]",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Each required registration field is really required."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_register_normalises_email_case",
+   "name": "test_register_normalises_email_case",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "An email registered in mixed case is stored in lower case."
+  },
+  {
+   "id": "tests/api/test_auth.py::test_register_returns_customer_profile",
+   "name": "test_register_returns_customer_profile",
+   "file": "tests/api/test_auth.py",
+   "layer": "api",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Registering returns 201 with a customer profile that matches the contract (no password)."
+  },
+  {
+   "id": "tests/api/test_health_and_support.py::test_bug_header_without_token_is_ignored",
+   "name": "test_bug_header_without_token_is_ignored",
+   "file": "tests/api/test_health_and_support.py",
+   "layer": "api",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "A visitor sending a bug header without the token gets the normal, correct store."
+  },
+  {
+   "id": "tests/api/test_health_and_support.py::test_unknown_bug_switch_is_rejected",
+   "name": "test_unknown_bug_switch_is_rejected",
+   "file": "tests/api/test_health_and_support.py",
+   "layer": "api",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "A misspelled switch with a valid token is a 400, so a typo can't hide a missing bug."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_add_item_returns_cart_with_line",
+   "name": "test_add_item_returns_cart_with_line",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Adding a product returns the updated cart with a correct line total."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_adding_same_product_twice_increments_quantity",
+   "name": "test_adding_same_product_twice_increments_quantity",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Adding a product already in the cart increases its quantity instead of adding a line."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_cart_requires_login",
+   "name": "test_cart_requires_login",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "The cart is private: anonymous requests get 401."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_cart_totals_follow_pricing_rules[earbuds-and-cable]",
+   "name": "test_cart_totals_follow_pricing_rules[earbuds-and-cable]",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "Cart totals equal the independently calculated subtotal, 8% tax (half-up) and shipping."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_cart_totals_follow_pricing_rules[one-cable]",
+   "name": "test_cart_totals_follow_pricing_rules[one-cable]",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "Cart totals equal the independently calculated subtotal, 8% tax (half-up) and shipping."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_cart_totals_follow_pricing_rules[three-cables]",
+   "name": "test_cart_totals_follow_pricing_rules[three-cables]",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "Cart totals equal the independently calculated subtotal, 8% tax (half-up) and shipping."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_carts_are_isolated_between_customers",
+   "name": "test_carts_are_isolated_between_customers",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "One customer's cart contents are never visible to another customer."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_new_customer_has_empty_cart",
+   "name": "test_new_customer_has_empty_cart",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "A brand-new customer's cart is empty with all totals at zero."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_out_of_stock_product_cannot_be_added",
+   "name": "test_out_of_stock_product_cannot_be_added",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "stock_not_enforced"
+   ],
+   "docstring": "A product with zero stock can't be added at all."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_quantity_outside_1_to_99_is_422[above-99]",
+   "name": "test_quantity_outside_1_to_99_is_422[above-99]",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Quantities outside 1-99 are rejected when adding to the cart."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_quantity_outside_1_to_99_is_422[negative]",
+   "name": "test_quantity_outside_1_to_99_is_422[negative]",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Quantities outside 1-99 are rejected when adding to the cart."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_quantity_outside_1_to_99_is_422[zero]",
+   "name": "test_quantity_outside_1_to_99_is_422[zero]",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Quantities outside 1-99 are rejected when adding to the cart."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_quantity_up_to_stock_is_allowed_beyond_is_409",
+   "name": "test_quantity_up_to_stock_is_allowed_beyond_is_409",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "stock_not_enforced"
+   ],
+   "docstring": "Exactly the available stock can be added; one more is a 409 insufficient_stock."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_remove_item",
+   "name": "test_remove_item",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "remove_item_noop"
+   ],
+   "docstring": "DELETE removes the product: the cart is empty afterwards."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_remove_item_twice_is_404",
+   "name": "test_remove_item_twice_is_404",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "remove_item_noop"
+   ],
+   "docstring": "A second DELETE for the same product is a 404 (it is no longer in the cart)."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_remove_one_of_two_items_keeps_the_other",
+   "name": "test_remove_one_of_two_items_keeps_the_other",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "remove_item_noop"
+   ],
+   "docstring": "Removing one product leaves other cart lines untouched."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_unknown_product_cannot_be_added",
+   "name": "test_unknown_product_cannot_be_added",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Adding a non-existent product is a 404."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_update_beyond_stock_is_409",
+   "name": "test_update_beyond_stock_is_409",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [
+    "stock_not_enforced"
+   ],
+   "docstring": "Raising a cart quantity above the available stock is a 409."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_update_item_not_in_cart_is_404",
+   "name": "test_update_item_not_in_cart_is_404",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Updating a product that isn't in the cart is a 404."
+  },
+  {
+   "id": "tests/api/test_cart.py::test_update_quantity",
+   "name": "test_update_quantity",
+   "file": "tests/api/test_cart.py",
+   "layer": "api",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "PATCH sets the quantity, and the line total follows."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_categories_contract",
+   "name": "test_categories_contract",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "GET /categories returns the six seeded categories, each matching the contract."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_category_filter_returns_only_that_category",
+   "name": "test_category_filter_returns_only_that_category",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Filtering by category returns exactly the 8 seeded audio products and nothing else."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_invalid_sort_is_422[PRICE_ASC]",
+   "name": "test_invalid_sort_is_422[PRICE_ASC]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Unknown sort values are rejected rather than ignored."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_invalid_sort_is_422[]",
+   "name": "test_invalid_sort_is_422[]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Unknown sort values are rejected rather than ignored."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_invalid_sort_is_422[cheapest]",
+   "name": "test_invalid_sort_is_422[cheapest]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Unknown sort values are rejected rather than ignored."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_inverted_price_range_is_rejected",
+   "name": "test_inverted_price_range_is_rejected",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "A minimum price above the maximum is a 422, not a silently empty result."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_page_must_be_positive[chromium--1]",
+   "name": "test_page_must_be_positive[chromium--1]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page numbers start at 1."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_page_must_be_positive[chromium-0]",
+   "name": "test_page_must_be_positive[chromium-0]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page numbers start at 1."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_page_past_the_end_is_empty",
+   "name": "test_page_past_the_end_is_empty",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "A page beyond the last returns 200 with no items (not an error)."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_page_size_boundaries[0-422]",
+   "name": "test_page_size_boundaries[0-422]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1 to 50 and rejects the values just outside."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_page_size_boundaries[1-200]",
+   "name": "test_page_size_boundaries[1-200]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1 to 50 and rejects the values just outside."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_page_size_boundaries[50-200]",
+   "name": "test_page_size_boundaries[50-200]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1 to 50 and rejects the values just outside."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_page_size_boundaries[51-422]",
+   "name": "test_page_size_boundaries[51-422]",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1 to 50 and rejects the values just outside."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_pages_cover_catalog_without_overlap",
+   "name": "test_pages_cover_catalog_without_overlap",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [
+    "pagination_off_by_one"
+   ],
+   "docstring": "Walking all pages yields every product exactly once."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_price_range_is_inclusive",
+   "name": "test_price_range_is_inclusive",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "min/max price filters include products priced exactly at either bound."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_product_detail_matches_listing",
+   "name": "test_product_detail_matches_listing",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "GET /products/{id} returns the same product the listing shows."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_product_listing_contract_and_defaults",
+   "name": "test_product_listing_contract_and_defaults",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "The default listing is page 1 with 12 items and consistent page maths."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_product_listing_responds_quickly",
+   "name": "test_product_listing_responds_quickly",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [
+    "slow_products"
+   ],
+   "docstring": "GET /products answers within the latency budget on a warm server."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_search_matches_name_case_insensitively",
+   "name": "test_search_matches_name_case_insensitively",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Searching 'WIRELESS' finds every product with 'wireless' in its name or description."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_search_respects_category_filter",
+   "name": "test_search_respects_category_filter",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [
+    "search_ignores_filters"
+   ],
+   "docstring": "Search combined with a category returns only matching products in that category."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_search_respects_price_filter",
+   "name": "test_search_respects_price_filter",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [
+    "search_ignores_filters"
+   ],
+   "docstring": "Search combined with a max price never returns products above that price."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_soft_deleted_product_is_hidden",
+   "name": "test_soft_deleted_product_is_hidden",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "The seeded discontinued product is invisible to shoppers but still known to admins."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_sort_by_name",
+   "name": "test_sort_by_name",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "The default sort is alphabetical by name."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_sort_price_ascending",
+   "name": "test_sort_price_ascending",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "sort=price_asc returns every product in non-decreasing price order."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_sort_price_descending",
+   "name": "test_sort_price_descending",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [
+    "sort_desc_broken"
+   ],
+   "docstring": "sort=price_desc returns every product in non-increasing price order."
+  },
+  {
+   "id": "tests/api/test_catalog.py::test_unknown_product_is_404",
+   "name": "test_unknown_product_is_404",
+   "file": "tests/api/test_catalog.py",
+   "layer": "api",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "A product id that doesn't exist is a 404 with an error code."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_card_rejections[bad-luhn]",
+   "name": "test_card_rejections[bad-luhn]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "A card failing the Luhn check is 422; the decline test card is 402."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_card_rejections[declined]",
+   "name": "test_card_rejections[declined]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "A card failing the Luhn check is 422; the decline test card is 402."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_checkout_creates_order_and_empties_cart",
+   "name": "test_checkout_creates_order_and_empties_cart",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "A successful checkout returns 201 with an order and leaves the cart empty."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_checkout_decrements_stock",
+   "name": "test_checkout_decrements_stock",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Buying 2 units lowers the product's stock by exactly 2."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_checkout_requires_login",
+   "name": "test_checkout_requires_login",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Anonymous checkout is 401."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_checkout_with_empty_cart_is_400",
+   "name": "test_checkout_with_empty_cart_is_400",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Checking out an empty cart is a 400 cart_empty."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_different_idempotency_keys_create_separate_orders",
+   "name": "test_different_idempotency_keys_create_separate_orders",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Two checkouts with different keys are two real orders."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_expired_card_is_rejected",
+   "name": "test_expired_card_is_rejected",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [
+    "expired_card_accepted"
+   ],
+   "docstring": "A card whose expiry month has passed is refused with card_expired and no order exists."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_idempotency_keys_are_scoped_per_customer",
+   "name": "test_idempotency_keys_are_scoped_per_customer",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Two customers using the same key each get their own order."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_malformed_card_fields_are_422[cvv-long]",
+   "name": "test_malformed_card_fields_are_422[cvv-long]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month and CVV exactly 3 digits."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_malformed_card_fields_are_422[cvv-short]",
+   "name": "test_malformed_card_fields_are_422[cvv-short]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month and CVV exactly 3 digits."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_malformed_card_fields_are_422[dash]",
+   "name": "test_malformed_card_fields_are_422[dash]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month and CVV exactly 3 digits."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_malformed_card_fields_are_422[month-13]",
+   "name": "test_malformed_card_fields_are_422[month-13]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month and CVV exactly 3 digits."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_malformed_card_fields_are_422[one-digit-month]",
+   "name": "test_malformed_card_fields_are_422[one-digit-month]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month and CVV exactly 3 digits."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_missing_shipping_field_is_422[address_line1]",
+   "name": "test_missing_shipping_field_is_422[address_line1]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Every shipping field is required."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_missing_shipping_field_is_422[city]",
+   "name": "test_missing_shipping_field_is_422[city]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Every shipping field is required."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_missing_shipping_field_is_422[country]",
+   "name": "test_missing_shipping_field_is_422[country]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Every shipping field is required."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_missing_shipping_field_is_422[full_name]",
+   "name": "test_missing_shipping_field_is_422[full_name]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Every shipping field is required."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_missing_shipping_field_is_422[postal_code]",
+   "name": "test_missing_shipping_field_is_422[postal_code]",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Every shipping field is required."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_order_snapshots_product_details",
+   "name": "test_order_snapshots_product_details",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "An order keeps the price paid even if the product's price changes later."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_order_totals_follow_pricing_rules",
+   "name": "test_order_totals_follow_pricing_rules",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "The order is charged the independently calculated total, including a coupon."
+  },
+  {
+   "id": "tests/api/test_checkout.py::test_retry_with_same_idempotency_key_returns_original_order",
+   "name": "test_retry_with_same_idempotency_key_returns_original_order",
+   "file": "tests/api/test_checkout.py",
+   "layer": "api",
+   "feature": "checkout",
+   "bugs": [
+    "checkout_double_submit"
+   ],
+   "docstring": "Retrying checkout with the same Idempotency-Key returns the first order, not a duplicate."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_coupon_code_is_case_insensitive",
+   "name": "test_coupon_code_is_case_insensitive",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "'save10' is accepted as SAVE10."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_coupon_discount_follows_pricing_rules[fixed]",
+   "name": "test_coupon_discount_follows_pricing_rules[fixed]",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "An applied coupon's discount, tax and total match the independently calculated values."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_coupon_discount_follows_pricing_rules[percent]",
+   "name": "test_coupon_discount_follows_pricing_rules[percent]",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "An applied coupon's discount, tax and total match the independently calculated values."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_coupon_stops_applying_when_cart_drops_below_minimum",
+   "name": "test_coupon_stops_applying_when_cart_drops_below_minimum",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "If the subtotal falls below a coupon's minimum, the discount disappears from the totals."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_expired_coupon_is_rejected",
+   "name": "test_expired_coupon_is_rejected",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [
+    "coupon_expiry_ignored"
+   ],
+   "docstring": "An expired coupon is refused with coupon_expired and no discount is applied."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_invalid_coupons_are_rejected_with_reason[below-min-fixed]",
+   "name": "test_invalid_coupons_are_rejected_with_reason[below-min-fixed]",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, used-up and below-minimum coupons are each rejected with a specific code."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_invalid_coupons_are_rejected_with_reason[below-min-percent]",
+   "name": "test_invalid_coupons_are_rejected_with_reason[below-min-percent]",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, used-up and below-minimum coupons are each rejected with a specific code."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_invalid_coupons_are_rejected_with_reason[unknown]",
+   "name": "test_invalid_coupons_are_rejected_with_reason[unknown]",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, used-up and below-minimum coupons are each rejected with a specific code."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_invalid_coupons_are_rejected_with_reason[used-up]",
+   "name": "test_invalid_coupons_are_rejected_with_reason[used-up]",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, used-up and below-minimum coupons are each rejected with a specific code."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_min_subtotal_boundary",
+   "name": "test_min_subtotal_boundary",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "FLAT5 needs a $20.00 subtotal: $19.98 is refused, $29.97 qualifies."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_remove_coupon_is_idempotent",
+   "name": "test_remove_coupon_is_idempotent",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "DELETE /cart/coupon removes the coupon and can safely be repeated."
+  },
+  {
+   "id": "tests/api/test_coupons.py::test_second_coupon_replaces_first",
+   "name": "test_second_coupon_replaces_first",
+   "file": "tests/api/test_coupons.py",
+   "layer": "api",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Only one coupon applies at a time; applying another replaces it."
+  },
+  {
+   "id": "tests/api/test_health_and_support.py::test_health_reports_ok",
+   "name": "test_health_reports_ok",
+   "file": "tests/api/test_health_and_support.py",
+   "layer": "api",
+   "feature": "health",
+   "bugs": [],
+   "docstring": "GET /health returns 200 and matches the health contract."
+  },
+  {
+   "id": "tests/api/test_orders.py::test_order_detail_matches_checkout_response",
+   "name": "test_order_detail_matches_checkout_response",
+   "file": "tests/api/test_orders.py",
+   "layer": "api",
+   "feature": "orders",
+   "bugs": [],
+   "docstring": "GET /orders/{id} returns the same order that checkout returned."
+  },
+  {
+   "id": "tests/api/test_orders.py::test_order_history_excludes_other_customers",
+   "name": "test_order_history_excludes_other_customers",
+   "file": "tests/api/test_orders.py",
+   "layer": "api",
+   "feature": "orders",
+   "bugs": [],
+   "docstring": "A customer's history never includes another customer's orders."
+  },
+  {
+   "id": "tests/api/test_orders.py::test_order_history_lists_own_orders_newest_first",
+   "name": "test_order_history_lists_own_orders_newest_first",
+   "file": "tests/api/test_orders.py",
+   "layer": "api",
+   "feature": "orders",
+   "bugs": [],
+   "docstring": "GET /orders lists the customer's orders, newest first, each matching the contract."
+  },
+  {
+   "id": "tests/api/test_orders.py::test_orders_require_login",
+   "name": "test_orders_require_login",
+   "file": "tests/api/test_orders.py",
+   "layer": "api",
+   "feature": "orders",
+   "bugs": [],
+   "docstring": "Order history is private: anonymous requests get 401."
+  },
+  {
+   "id": "tests/api/test_orders.py::test_other_customers_order_is_404",
+   "name": "test_other_customers_order_is_404",
+   "file": "tests/api/test_orders.py",
+   "layer": "api",
+   "feature": "orders",
+   "bugs": [
+    "order_idor"
+   ],
+   "docstring": "Fetching another customer's order by id is a 404, as if it didn't exist."
+  },
+  {
+   "id": "tests/api/test_orders.py::test_unknown_order_is_404",
+   "name": "test_unknown_order_is_404",
+   "file": "tests/api/test_orders.py",
+   "layer": "api",
+   "feature": "orders",
+   "bugs": [],
+   "docstring": "An order id that doesn't exist is a 404."
+  },
+  {
+   "id": "tests/api/test_health_and_support.py::test_bug_registry_matches_test_suite",
+   "name": "test_bug_registry_matches_test_suite",
+   "file": "tests/api/test_health_and_support.py",
+   "layer": "api",
+   "feature": "test-support",
+   "bugs": [],
+   "docstring": "The server's bug switches are exactly the ones this suite knows how to catch."
+  },
+  {
+   "id": "tests/api/test_health_and_support.py::test_reset_requires_valid_token[no-token]",
+   "name": "test_reset_requires_valid_token[no-token]",
+   "file": "tests/api/test_health_and_support.py",
+   "layer": "api",
+   "feature": "test-support",
+   "bugs": [],
+   "docstring": "POST /test/reset is refused without the correct X-Test-Token."
+  },
+  {
+   "id": "tests/api/test_health_and_support.py::test_reset_requires_valid_token[wrong-token]",
+   "name": "test_reset_requires_valid_token[wrong-token]",
+   "file": "tests/api/test_health_and_support.py",
+   "layer": "api",
+   "feature": "test-support",
+   "bugs": [],
+   "docstring": "POST /test/reset is refused without the correct X-Test-Token."
+  },
+  {
+   "id": "tests/perf/test_perf.py::test_cart_read_p95",
+   "name": "test_cart_read_p95",
+   "file": "tests/perf/test_perf.py",
+   "layer": "perf",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Under light load, reading a logged-in customer's cart keeps p95 latency within budget."
+  },
+  {
+   "id": "tests/perf/test_perf.py::test_product_detail_p95",
+   "name": "test_product_detail_p95",
+   "file": "tests/perf/test_perf.py",
+   "layer": "perf",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Under light load, a product detail page keeps p95 latency within budget."
+  },
+  {
+   "id": "tests/perf/test_perf.py::test_product_search_p95",
+   "name": "test_product_search_p95",
+   "file": "tests/perf/test_perf.py",
+   "layer": "perf",
+   "feature": "catalog",
+   "bugs": [
+    "slow_products"
+   ],
+   "docstring": "Under light load, a filtered product search keeps p95 latency within budget."
+  },
+  {
+   "id": "tests/perf/test_perf.py::test_products_list_p95",
+   "name": "test_products_list_p95",
+   "file": "tests/perf/test_perf.py",
+   "layer": "perf",
+   "feature": "catalog",
+   "bugs": [
+    "slow_products"
+   ],
+   "docstring": "Under light load, the first catalog page keeps p95 latency within budget."
+  },
+  {
+   "id": "tests/ui/test_orders_admin_ui.py::test_admin_creates_product_and_shoppers_see_it[chromium]",
+   "name": "test_admin_creates_product_and_shoppers_see_it[chromium]",
+   "file": "tests/ui/test_orders_admin_ui.py",
+   "layer": "ui",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A product added in the admin page appears in the shop's search results."
+  },
+  {
+   "id": "tests/ui/test_orders_admin_ui.py::test_admin_deletes_product_and_shoppers_no_longer_see_it[chromium]",
+   "name": "test_admin_deletes_product_and_shoppers_no_longer_see_it[chromium]",
+   "file": "tests/ui/test_orders_admin_ui.py",
+   "layer": "ui",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Deleting a product (with confirmation) marks it Deleted and removes it from the shop."
+  },
+  {
+   "id": "tests/ui/test_orders_admin_ui.py::test_customer_cannot_open_admin_page[chromium]",
+   "name": "test_customer_cannot_open_admin_page[chromium]",
+   "file": "tests/ui/test_orders_admin_ui.py",
+   "layer": "ui",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A customer visiting /admin sees an admin-only message and no product table."
+  },
+  {
+   "id": "tests/ui/test_auth_ui.py::test_login_with_wrong_password_shows_error[chromium]",
+   "name": "test_login_with_wrong_password_shows_error[chromium]",
+   "file": "tests/ui/test_auth_ui.py",
+   "layer": "ui",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "A wrong password shows 'Invalid email or password' and the user stays logged out."
+  },
+  {
+   "id": "tests/ui/test_auth_ui.py::test_logout_returns_to_logged_out_header[chromium]",
+   "name": "test_logout_returns_to_logged_out_header[chromium]",
+   "file": "tests/ui/test_auth_ui.py",
+   "layer": "ui",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Logging out removes the user's name and shows the login link again."
+  },
+  {
+   "id": "tests/ui/test_auth_ui.py::test_protected_page_redirects_to_login_then_back[chromium]",
+   "name": "test_protected_page_redirects_to_login_then_back[chromium]",
+   "file": "tests/ui/test_auth_ui.py",
+   "layer": "ui",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Opening /orders while logged out goes to login, and logging in returns to /orders."
+  },
+  {
+   "id": "tests/ui/test_auth_ui.py::test_register_logs_the_new_user_in[chromium]",
+   "name": "test_register_logs_the_new_user_in[chromium]",
+   "file": "tests/ui/test_auth_ui.py",
+   "layer": "ui",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Signing up logs the user straight in: their name and an empty cart badge appear."
+  },
+  {
+   "id": "tests/ui/test_auth_ui.py::test_register_with_short_password_shows_error[chromium]",
+   "name": "test_register_with_short_password_shows_error[chromium]",
+   "file": "tests/ui/test_auth_ui.py",
+   "layer": "ui",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "A password shorter than 8 characters is refused with a visible error."
+  },
+  {
+   "id": "tests/ui/test_cart_ui.py::test_add_to_cart_updates_badge[chromium]",
+   "name": "test_add_to_cart_updates_badge[chromium]",
+   "file": "tests/ui/test_cart_ui.py",
+   "layer": "ui",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Adding 2 units on the product page confirms it and shows 2 in the header badge."
+  },
+  {
+   "id": "tests/ui/test_cart_ui.py::test_adding_more_than_stock_shows_error[chromium]",
+   "name": "test_adding_more_than_stock_shows_error[chromium]",
+   "file": "tests/ui/test_cart_ui.py",
+   "layer": "ui",
+   "feature": "cart",
+   "bugs": [
+    "stock_not_enforced"
+   ],
+   "docstring": "Asking for one more unit than is in stock shows an 'Only N in stock' error."
+  },
+  {
+   "id": "tests/ui/test_cart_ui.py::test_cart_shows_correctly_rounded_totals[chromium]",
+   "name": "test_cart_shows_correctly_rounded_totals[chromium]",
+   "file": "tests/ui/test_cart_ui.py",
+   "layer": "ui",
+   "feature": "cart",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "The cart summary shows subtotal, 8% tax rounded half-up, shipping and total correctly."
+  },
+  {
+   "id": "tests/ui/test_cart_ui.py::test_remove_item_empties_cart[chromium]",
+   "name": "test_remove_item_empties_cart[chromium]",
+   "file": "tests/ui/test_cart_ui.py",
+   "layer": "ui",
+   "feature": "cart",
+   "bugs": [
+    "remove_item_noop"
+   ],
+   "docstring": "Removing the only item shows the empty-cart message and a zero badge."
+  },
+  {
+   "id": "tests/ui/test_cart_ui.py::test_update_quantity_updates_line_total[chromium]",
+   "name": "test_update_quantity_updates_line_total[chromium]",
+   "file": "tests/ui/test_cart_ui.py",
+   "layer": "ui",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Changing the quantity to 3 updates that line's total to 3 x unit price."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_anonymous_visitor_is_asked_to_log_in_to_buy[chromium]",
+   "name": "test_anonymous_visitor_is_asked_to_log_in_to_buy[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "A logged-out visitor sees a login prompt instead of the add-to-cart button."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_catalog_shows_first_page_of_products[chromium]",
+   "name": "test_catalog_shows_first_page_of_products[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "The shop opens on page 1 with 12 product cards and a page indicator."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_category_filter_narrows_search_results[chromium]",
+   "name": "test_category_filter_narrows_search_results[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [
+    "search_ignores_filters"
+   ],
+   "docstring": "Choosing the Gaming category after searching 'wireless' leaves only the game controller."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_filters_are_kept_in_the_url[chromium]",
+   "name": "test_filters_are_kept_in_the_url[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Opening a URL with filters shows the filtered, sorted results directly."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_next_page_shows_different_products[chromium]",
+   "name": "test_next_page_shows_different_products[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [
+    "pagination_off_by_one"
+   ],
+   "docstring": "Page 2 shows 12 products none of which were on page 1, and Previous returns to page 1."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_product_card_opens_matching_detail_page[chromium]",
+   "name": "test_product_card_opens_matching_detail_page[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Clicking a product card opens its detail page with the same name and price."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_search_shows_only_matching_products[chromium]",
+   "name": "test_search_shows_only_matching_products[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Searching 'wireless' shows exactly the five wireless products."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_search_with_no_matches_shows_empty_state[chromium]",
+   "name": "test_search_with_no_matches_shows_empty_state[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "A search with no matches shows a friendly empty message instead of a grid."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_sort_price_high_to_low[chromium]",
+   "name": "test_sort_price_high_to_low[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "catalog",
+   "bugs": [
+    "sort_desc_broken"
+   ],
+   "docstring": "'Price: high to low' puts the most expensive product first and keeps prices descending."
+  },
+  {
+   "id": "tests/ui/test_checkout_ui.py::test_checkout_shows_demo_payment_banner[chromium]",
+   "name": "test_checkout_shows_demo_payment_banner[chromium]",
+   "file": "tests/ui/test_checkout_ui.py",
+   "layer": "ui",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "The checkout page clearly says payments are fake before any card is entered."
+  },
+  {
+   "id": "tests/ui/test_checkout_ui.py::test_double_submit_creates_only_one_order[chromium]",
+   "name": "test_double_submit_creates_only_one_order[chromium]",
+   "file": "tests/ui/test_checkout_ui.py",
+   "layer": "ui",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Two rapid submits of the checkout form result in exactly one order."
+  },
+  {
+   "id": "tests/ui/test_checkout_ui.py::test_empty_cart_cannot_check_out[chromium]",
+   "name": "test_empty_cart_cannot_check_out[chromium]",
+   "file": "tests/ui/test_checkout_ui.py",
+   "layer": "ui",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "With an empty cart the checkout page offers a link back to the shop instead of a form."
+  },
+  {
+   "id": "tests/ui/test_checkout_ui.py::test_expired_card_shows_error_and_no_order[chromium]",
+   "name": "test_expired_card_shows_error_and_no_order[chromium]",
+   "file": "tests/ui/test_checkout_ui.py",
+   "layer": "ui",
+   "feature": "checkout",
+   "bugs": [
+    "expired_card_accepted"
+   ],
+   "docstring": "An expired card shows 'Card has expired' and no order is created."
+  },
+  {
+   "id": "tests/ui/test_checkout_ui.py::test_missing_shipping_details_are_caught_in_page[chromium]",
+   "name": "test_missing_shipping_details_are_caught_in_page[chromium]",
+   "file": "tests/ui/test_checkout_ui.py",
+   "layer": "ui",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Submitting without shipping details shows an error in the page and sends nothing."
+  },
+  {
+   "id": "tests/ui/test_checkout_ui.py::test_place_order_shows_confirmation_and_history[chromium]",
+   "name": "test_place_order_shows_confirmation_and_history[chromium]",
+   "file": "tests/ui/test_checkout_ui.py",
+   "layer": "ui",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Placing an order confirms it at the same total, empties the cart and adds it to history."
+  },
+  {
+   "id": "tests/ui/test_cart_ui.py::test_coupon_applies_correct_discount[chromium]",
+   "name": "test_coupon_applies_correct_discount[chromium]",
+   "file": "tests/ui/test_cart_ui.py",
+   "layer": "ui",
+   "feature": "coupons",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "Applying SAVE10 (case-insensitive) shows the coupon and the correctly rounded discount."
+  },
+  {
+   "id": "tests/ui/test_cart_ui.py::test_expired_coupon_shows_error[chromium]",
+   "name": "test_expired_coupon_shows_error[chromium]",
+   "file": "tests/ui/test_cart_ui.py",
+   "layer": "ui",
+   "feature": "coupons",
+   "bugs": [
+    "coupon_expiry_ignored"
+   ],
+   "docstring": "An expired coupon shows 'This coupon has expired' and no coupon is applied."
+  },
+  {
+   "id": "tests/ui/test_catalog_ui.py::test_unknown_route_shows_not_found[chromium]",
+   "name": "test_unknown_route_shows_not_found[chromium]",
+   "file": "tests/ui/test_catalog_ui.py",
+   "layer": "ui",
+   "feature": "navigation",
+   "bugs": [],
+   "docstring": "An unknown URL shows the not-found page with a way back to the shop."
+  },
+  {
+   "id": "tests/ui/test_orders_admin_ui.py::test_other_customers_order_is_not_shown[chromium]",
+   "name": "test_other_customers_order_is_not_shown[chromium]",
+   "file": "tests/ui/test_orders_admin_ui.py",
+   "layer": "ui",
+   "feature": "orders",
+   "bugs": [
+    "order_idor"
+   ],
+   "docstring": "Opening another customer's order URL shows 'Order not found' instead of their details."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_create_validation[change0-422]",
+   "name": "test_admin_create_validation[change0-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format and unknown category are 422; a duplicate SKU is 409."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_create_validation[change1-422]",
+   "name": "test_admin_create_validation[change1-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format and unknown category are 422; a duplicate SKU is 409."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_create_validation[change2-422]",
+   "name": "test_admin_create_validation[change2-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format and unknown category are 422; a duplicate SKU is 409."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_create_validation[change3-422]",
+   "name": "test_admin_create_validation[change3-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format and unknown category are 422; a duplicate SKU is 409."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_create_validation[change4-422]",
+   "name": "test_admin_create_validation[change4-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format and unknown category are 422; a duplicate SKU is 409."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_create_validation[change5-409]",
+   "name": "test_admin_create_validation[change5-409]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Invalid price, stock, SKU format and unknown category are 422; a duplicate SKU is 409."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_creates_product_visible_in_catalog",
+   "name": "test_admin_creates_product_visible_in_catalog",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A product created by an admin shows up in public search."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_partial_update",
+   "name": "test_admin_partial_update",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "PATCH changes only the fields sent."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_admin_soft_delete_hides_product",
+   "name": "test_admin_soft_delete_hides_product",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "A deleted product disappears from the catalog but still exists for admins."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_customer_cannot_use_admin_api",
+   "name": "test_customer_cannot_use_admin_api",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "admin",
+   "bugs": [],
+   "docstring": "Admin endpoints return 403 for a logged-in customer."
+  },
+  {
+   "id": "store/backend/tests/test_seed_and_spec.py::test_committed_openapi_spec_is_current",
+   "name": "test_committed_openapi_spec_is_current",
+   "file": "store/backend/tests/test_seed_and_spec.py",
+   "layer": "unit",
+   "feature": "api-contract",
+   "bugs": [],
+   "docstring": "openapi.json in the repo matches the running code (run `python -m app.export_openapi`)."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_bad_login_gives_same_401[me@unit.test-wrong-password]",
+   "name": "test_bad_login_gives_same_401[me@unit.test-wrong-password]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Wrong password and unknown email give the identical error (no account enumeration)."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_bad_login_gives_same_401[nobody@unit.test-xxxxxxxx]",
+   "name": "test_bad_login_gives_same_401[nobody@unit.test-xxxxxxxx]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Wrong password and unknown email give the identical error (no account enumeration)."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_duplicate_email_is_409_case_insensitive",
+   "name": "test_duplicate_email_is_409_case_insensitive",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "An email that differs only by case counts as already registered."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_expired_token_is_401",
+   "name": "test_expired_token_is_401",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "A correctly signed token whose expiry has passed is rejected."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_login_and_me",
+   "name": "test_login_and_me",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Logging in returns a bearer token that /auth/me accepts."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_malformed_email_is_422[]",
+   "name": "test_malformed_email_is_422[]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed emails are rejected."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_malformed_email_is_422[a@b]",
+   "name": "test_malformed_email_is_422[a@b]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed emails are rejected."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_malformed_email_is_422[no-at-sign]",
+   "name": "test_malformed_email_is_422[no-at-sign]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed emails are rejected."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_malformed_email_is_422[spaces in@x.com]",
+   "name": "test_malformed_email_is_422[spaces in@x.com]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Obviously malformed emails are rejected."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_me_without_token_is_401",
+   "name": "test_me_without_token_is_401",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "/auth/me without a token is 401 and advertises the Bearer scheme."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_password_length_boundaries[\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9-422]",
+   "name": "test_password_length_boundaries[\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9\\xe9-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords need 8+ characters and at most 72 bytes (bcrypt's limit); 37 '\u00e9' is 74 bytes."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_password_length_boundaries[aaaaaaa-422]",
+   "name": "test_password_length_boundaries[aaaaaaa-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords need 8+ characters and at most 72 bytes (bcrypt's limit); 37 '\u00e9' is 74 bytes."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_password_length_boundaries[aaaaaaaa-201]",
+   "name": "test_password_length_boundaries[aaaaaaaa-201]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords need 8+ characters and at most 72 bytes (bcrypt's limit); 37 '\u00e9' is 74 bytes."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_password_length_boundaries[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-201]",
+   "name": "test_password_length_boundaries[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-201]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords need 8+ characters and at most 72 bytes (bcrypt's limit); 37 '\u00e9' is 74 bytes."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_password_length_boundaries[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-422]",
+   "name": "test_password_length_boundaries[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-422]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Passwords need 8+ characters and at most 72 bytes (bcrypt's limit); 37 '\u00e9' is 74 bytes."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_register_returns_customer_without_password",
+   "name": "test_register_returns_customer_without_password",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Registering returns 201 with a customer profile and never exposes the password hash."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_tampered_token_is_401",
+   "name": "test_tampered_token_is_401",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "Changing one character of the token's signature makes it invalid."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_token_signed_with_other_secret_is_401",
+   "name": "test_token_signed_with_other_secret_is_401",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "auth",
+   "bugs": [],
+   "docstring": "A token signed with someone else's secret is rejected, even for a real user id."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_every_bug_is_documented",
+   "name": "test_every_bug_is_documented",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "Every switch has a description (the dashboard and docs list them)."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_header_ignored_with_wrong_token",
+   "name": "test_header_ignored_with_wrong_token",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "A wrong token enables nothing."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_header_ignored_without_token",
+   "name": "test_header_ignored_without_token",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "Bug names without a token enable nothing, so the public store can't be broken."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_unknown_bug_name_is_an_error",
+   "name": "test_unknown_bug_name_is_an_error",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "A typo in a switch name fails loudly instead of silently running bug-free."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_valid_token_enables_listed_bugs",
+   "name": "test_valid_token_enables_listed_bugs",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "With the right token, every listed switch is enabled (whitespace tolerated)."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_active_bugs_are_echoed",
+   "name": "test_active_bugs_are_echoed",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "The response confirms which bugs were really enabled."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_bug_header_without_token_does_nothing",
+   "name": "test_bug_header_without_token_does_nothing",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "Without the token, a visitor's bug header is ignored and no bug is reported active."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_unknown_bug_with_token_is_400",
+   "name": "test_unknown_bug_with_token_is_400",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "bug-switches",
+   "bugs": [],
+   "docstring": "A misspelled switch with a valid token is rejected with 400."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_adding_same_product_increments_quantity",
+   "name": "test_adding_same_product_increments_quantity",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Adding a product that is already in the cart increases its quantity."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_cart_requires_login",
+   "name": "test_cart_requires_login",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "The cart is private: no token means 401."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_cart_rounding_bug",
+   "name": "test_cart_rounding_bug",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [
+    "cart_rounding"
+   ],
+   "docstring": "With the bug on, tax is truncated to 79 cents and the total is a cent short."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_cart_totals_round_half_up",
+   "name": "test_cart_totals_round_half_up",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "A $9.99 cable: 8% tax is 79.92 cents, rounded to 80, plus $4.99 shipping."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_carts_are_isolated_per_user",
+   "name": "test_carts_are_isolated_per_user",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "One customer's cart is invisible to another."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_out_of_stock_product_cannot_be_added",
+   "name": "test_out_of_stock_product_cannot_be_added",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "A product with zero stock can't be added at all."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_quantity_limited_by_stock[3-200]",
+   "name": "test_quantity_limited_by_stock[3-200]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "AUD-008 has 3 in stock: 3 can be added, 4 is a 409 conflict."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_quantity_limited_by_stock[4-409]",
+   "name": "test_quantity_limited_by_stock[4-409]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "AUD-008 has 3 in stock: 3 can be added, 4 is a 409 conflict."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_quantity_outside_1_to_99_is_rejected[0]",
+   "name": "test_quantity_outside_1_to_99_is_rejected[0]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Quantity must be between 1 and 99."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_quantity_outside_1_to_99_is_rejected[100]",
+   "name": "test_quantity_outside_1_to_99_is_rejected[100]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "Quantity must be between 1 and 99."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_remove_item",
+   "name": "test_remove_item",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "DELETE removes the product from the cart."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_remove_item_noop_bug",
+   "name": "test_remove_item_noop_bug",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [
+    "remove_item_noop"
+   ],
+   "docstring": "With the bug on, DELETE says 204 but the item is still in the cart."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_stock_not_enforced_bug",
+   "name": "test_stock_not_enforced_bug",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [
+    "stock_not_enforced"
+   ],
+   "docstring": "With the bug on, 4 units of a product with stock 3 can be added."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_update_quantity",
+   "name": "test_update_quantity",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "PATCH sets the quantity and the totals follow."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_update_rejects_missing_item_and_excess_stock",
+   "name": "test_update_rejects_missing_item_and_excess_stock",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "cart",
+   "bugs": [],
+   "docstring": "PATCH on a product not in the cart is 404; above stock is 409."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_default_listing_has_four_pages",
+   "name": "test_default_listing_has_four_pages",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "48 active products at 12 per page gives exactly 4 pages."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_inactive_product_is_hidden",
+   "name": "test_inactive_product_is_hidden",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "The soft-deleted seed product appears in neither search nor detail."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_min_price_above_max_is_rejected",
+   "name": "test_min_price_above_max_is_rejected",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "An impossible price range is a 422, not an empty result."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_page_past_end_is_empty",
+   "name": "test_page_past_end_is_empty",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Asking for a page beyond the last one returns no items rather than an error."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_page_size_boundaries[0-422]",
+   "name": "test_page_size_boundaries[0-422]",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1-50 and rejects values just outside that range."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_page_size_boundaries[1-200]",
+   "name": "test_page_size_boundaries[1-200]",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1-50 and rejects values just outside that range."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_page_size_boundaries[50-200]",
+   "name": "test_page_size_boundaries[50-200]",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1-50 and rejects values just outside that range."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_page_size_boundaries[51-422]",
+   "name": "test_page_size_boundaries[51-422]",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "page_size accepts 1-50 and rejects values just outside that range."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_pages_do_not_overlap",
+   "name": "test_pages_do_not_overlap",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Consecutive pages share no products."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_pagination_off_by_one_bug",
+   "name": "test_pagination_off_by_one_bug",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [
+    "pagination_off_by_one"
+   ],
+   "docstring": "With the bug on, page 2 starts with the last product of page 1."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_price_range_filter",
+   "name": "test_price_range_filter",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "min/max price filters are inclusive at both ends."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_search_ignores_filters_bug",
+   "name": "test_search_ignores_filters_bug",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [
+    "search_ignores_filters"
+   ],
+   "docstring": "With the bug on, the category filter is dropped and all 5 wireless products return."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_search_with_category_filter",
+   "name": "test_search_with_category_filter",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "Searching \"wireless\" within gaming returns only the gaming controller."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_six_categories_seeded",
+   "name": "test_six_categories_seeded",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "The seed creates six categories."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_slow_products_bug",
+   "name": "test_slow_products_bug",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [
+    "slow_products"
+   ],
+   "docstring": "With the bug on, GET /products takes at least the configured delay (300 ms here)."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_sort_desc_broken_bug",
+   "name": "test_sort_desc_broken_bug",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [
+    "sort_desc_broken"
+   ],
+   "docstring": "With the bug on, price_desc actually returns the cheapest product first."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_sort_price_desc",
+   "name": "test_sort_price_desc",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "sort=price_desc puts the most expensive product first."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_unknown_product_returns_404",
+   "name": "test_unknown_product_returns_404",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "catalog",
+   "bugs": [],
+   "docstring": "A product id that doesn't exist returns 404 with an error code."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_card_rejections[card_change0-422-card_invalid]",
+   "name": "test_checkout_card_rejections[card_change0-422-card_invalid]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Bad checksum, expired and declined cards are rejected with distinct codes."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_card_rejections[card_change1-422-card_expired]",
+   "name": "test_checkout_card_rejections[card_change1-422-card_expired]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Bad checksum, expired and declined cards are rejected with distinct codes."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_card_rejections[card_change2-402-card_declined]",
+   "name": "test_checkout_card_rejections[card_change2-402-card_declined]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Bad checksum, expired and declined cards are rejected with distinct codes."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_creates_order_and_empties_cart",
+   "name": "test_checkout_creates_order_and_empties_cart",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "A successful checkout returns 201, matches the cart total, empties the cart and\nreduces stock."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_double_submit_bug",
+   "name": "test_checkout_double_submit_bug",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [
+    "checkout_double_submit"
+   ],
+   "docstring": "With the bug on, a retry with the same key creates a second order."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_fails_if_stock_sold_out_meanwhile",
+   "name": "test_checkout_fails_if_stock_sold_out_meanwhile",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "If another buyer takes the last units after you added them, checkout is a 409."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_rejects_coupon_that_stopped_qualifying",
+   "name": "test_checkout_rejects_coupon_that_stopped_qualifying",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "A coupon whose minimum is no longer met after a cart change blocks checkout with 422."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_rejects_malformed_expiry[01-30]",
+   "name": "test_checkout_rejects_malformed_expiry[01-30]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_rejects_malformed_expiry[1/30]",
+   "name": "test_checkout_rejects_malformed_expiry[1/30]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_rejects_malformed_expiry[13/30]",
+   "name": "test_checkout_rejects_malformed_expiry[13/30]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Expiry must be MM/YY with a real month."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_checkout_with_empty_cart_is_400",
+   "name": "test_checkout_with_empty_cart_is_400",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "You can't check out an empty cart."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_coupon_is_used_on_checkout",
+   "name": "test_coupon_is_used_on_checkout",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "A coupon applied in the cart appears on the order with the same discount."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_expired_card_accepted_bug",
+   "name": "test_expired_card_accepted_bug",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [
+    "expired_card_accepted"
+   ],
+   "docstring": "With the bug on, an expired card is accepted and the order is placed."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_same_idempotency_key_returns_same_order",
+   "name": "test_same_idempotency_key_returns_same_order",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Retrying checkout with the same Idempotency-Key returns the first order (200)."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_card_expiry_boundaries[01/27-False]",
+   "name": "test_card_expiry_boundaries[01/27-False]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "On 21 Oct 2026 a card expiring 10/26 is still valid; 09/26 is expired."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_card_expiry_boundaries[09/26-True]",
+   "name": "test_card_expiry_boundaries[09/26-True]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "On 21 Oct 2026 a card expiring 10/26 is still valid; 09/26 is expired."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_card_expiry_boundaries[10/26-False]",
+   "name": "test_card_expiry_boundaries[10/26-False]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "On 21 Oct 2026 a card expiring 10/26 is still valid; 09/26 is expired."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_card_expiry_boundaries[11/26-False]",
+   "name": "test_card_expiry_boundaries[11/26-False]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "On 21 Oct 2026 a card expiring 10/26 is still valid; 09/26 is expired."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_card_expiry_boundaries[12/25-True]",
+   "name": "test_card_expiry_boundaries[12/25-True]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "On 21 Oct 2026 a card expiring 10/26 is still valid; 09/26 is expired."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_declined_test_card",
+   "name": "test_declined_test_card",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Only the documented decline card number is declined."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_accepts_valid_numbers[4000-0000-0000-0002]",
+   "name": "test_luhn_accepts_valid_numbers[4000-0000-0000-0002]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Well-known test card numbers pass the Luhn check, with or without spaces/dashes."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_accepts_valid_numbers[4242 4242 4242 4242]",
+   "name": "test_luhn_accepts_valid_numbers[4242 4242 4242 4242]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Well-known test card numbers pass the Luhn check, with or without spaces/dashes."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_accepts_valid_numbers[4242424242424242]",
+   "name": "test_luhn_accepts_valid_numbers[4242424242424242]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Well-known test card numbers pass the Luhn check, with or without spaces/dashes."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_accepts_valid_numbers[5555555555554444]",
+   "name": "test_luhn_accepts_valid_numbers[5555555555554444]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Well-known test card numbers pass the Luhn check, with or without spaces/dashes."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_rejects_invalid_numbers[1234]",
+   "name": "test_luhn_rejects_invalid_numbers[1234]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Wrong checksum, too short, non-digits and too long are all rejected."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_rejects_invalid_numbers[4242424242424241]",
+   "name": "test_luhn_rejects_invalid_numbers[4242424242424241]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Wrong checksum, too short, non-digits and too long are all rejected."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_rejects_invalid_numbers[42424242424242424242]",
+   "name": "test_luhn_rejects_invalid_numbers[42424242424242424242]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Wrong checksum, too short, non-digits and too long are all rejected."
+  },
+  {
+   "id": "store/backend/tests/test_payments.py::test_luhn_rejects_invalid_numbers[abcdabcdabcdabcd]",
+   "name": "test_luhn_rejects_invalid_numbers[abcdabcdabcdabcd]",
+   "file": "store/backend/tests/test_payments.py",
+   "layer": "unit",
+   "feature": "checkout",
+   "bugs": [],
+   "docstring": "Wrong checksum, too short, non-digits and too long are all rejected."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_cors_origins_parsed_from_comma_list",
+   "name": "test_cors_origins_parsed_from_comma_list",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "config",
+   "bugs": [],
+   "docstring": "CORS origins come from one comma-separated env var."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_production_refuses_dev_secrets",
+   "name": "test_production_refuses_dev_secrets",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "config",
+   "bugs": [],
+   "docstring": "Production mode won't start while any secret still has its dev default."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_production_rejects_short_jwt_secret",
+   "name": "test_production_rejects_short_jwt_secret",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "config",
+   "bugs": [],
+   "docstring": "Production needs a JWT secret of at least 32 characters (256 bits for HS256)."
+  },
+  {
+   "id": "store/backend/tests/test_bugs_and_config.py::test_production_starts_with_real_secrets",
+   "name": "test_production_starts_with_real_secrets",
+   "file": "store/backend/tests/test_bugs_and_config.py",
+   "layer": "unit",
+   "feature": "config",
+   "bugs": [],
+   "docstring": "Production mode starts once every secret is overridden."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_coupon_can_be_replaced_and_removed",
+   "name": "test_coupon_can_be_replaced_and_removed",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Applying a second coupon replaces the first; DELETE removes it (and is repeatable)."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_coupon_expiry_ignored_bug",
+   "name": "test_coupon_expiry_ignored_bug",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "coupons",
+   "bugs": [
+    "coupon_expiry_ignored"
+   ],
+   "docstring": "With the bug on, the expired EXPIRED15 coupon is accepted."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_coupon_rejections[EXPIRED15-422-coupon_expired]",
+   "name": "test_coupon_rejections[EXPIRED15-422-coupon_expired]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, expired, used-up and below-minimum coupons are each rejected with a reason."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_coupon_rejections[FLAT5-422-coupon_min_subtotal]",
+   "name": "test_coupon_rejections[FLAT5-422-coupon_min_subtotal]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, expired, used-up and below-minimum coupons are each rejected with a reason."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_coupon_rejections[NOPE-404-coupon_not_found]",
+   "name": "test_coupon_rejections[NOPE-404-coupon_not_found]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, expired, used-up and below-minimum coupons are each rejected with a reason."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_coupon_rejections[USEDUP-422-coupon_used_up]",
+   "name": "test_coupon_rejections[USEDUP-422-coupon_used_up]",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "Unknown, expired, used-up and below-minimum coupons are each rejected with a reason."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_percent_coupon_applies_case_insensitively",
+   "name": "test_percent_coupon_applies_case_insensitively",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "coupons",
+   "bugs": [],
+   "docstring": "'save10' applies the SAVE10 coupon: 10% off."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_health_commit_defaults_to_unknown",
+   "name": "test_health_commit_defaults_to_unknown",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "health",
+   "bugs": [],
+   "docstring": "Without a commit variable (local runs), /health says 'unknown'."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_health_reports_deployed_commit[CRASHCART_COMMIT]",
+   "name": "test_health_reports_deployed_commit[CRASHCART_COMMIT]",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "health",
+   "bugs": [],
+   "docstring": "/health reports the commit from Render's RENDER_GIT_COMMIT or CRASHCART_COMMIT."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_health_reports_deployed_commit[RENDER_GIT_COMMIT]",
+   "name": "test_health_reports_deployed_commit[RENDER_GIT_COMMIT]",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "health",
+   "bugs": [],
+   "docstring": "/health reports the commit from Render's RENDER_GIT_COMMIT or CRASHCART_COMMIT."
+  },
+  {
+   "id": "store/backend/tests/test_catalog_routes.py::test_health_reports_ok",
+   "name": "test_health_reports_ok",
+   "file": "store/backend/tests/test_catalog_routes.py",
+   "layer": "unit",
+   "feature": "health",
+   "bugs": [],
+   "docstring": "/health answers 200 with status and database both ok."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_order_history_lists_own_orders",
+   "name": "test_order_history_lists_own_orders",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "orders",
+   "bugs": [],
+   "docstring": "A customer sees their order in history and can open it."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_order_idor_bug",
+   "name": "test_order_idor_bug",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "orders",
+   "bugs": [
+    "order_idor"
+   ],
+   "docstring": "With the bug on, a customer can read another customer's order."
+  },
+  {
+   "id": "store/backend/tests/test_cart_checkout_routes.py::test_other_users_order_is_404",
+   "name": "test_other_users_order_is_404",
+   "file": "store/backend/tests/test_cart_checkout_routes.py",
+   "layer": "unit",
+   "feature": "orders",
+   "bugs": [],
+   "docstring": "A customer can't read another customer's order: it looks like it doesn't exist."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_empty_cart_is_all_zero",
+   "name": "test_empty_cart_is_all_zero",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "An empty cart costs nothing, including no shipping charge."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_fixed_discount_cannot_exceed_subtotal",
+   "name": "test_fixed_discount_cannot_exceed_subtotal",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "A fixed coupon larger than the cart only reduces the subtotal to zero."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_free_shipping_at_threshold",
+   "name": "test_free_shipping_at_threshold",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "A subtotal of exactly $50.00 qualifies for free shipping (boundary value)."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_percent_discount_is_taxed_after_discount",
+   "name": "test_percent_discount_is_taxed_after_discount",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "10% off $59.99 gives $6.00 off; tax is charged on the discounted amount."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_tax_and_shipping_below_free_threshold",
+   "name": "test_tax_and_shipping_below_free_threshold",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "A $19.99 cart pays 8% tax rounded half-up ($1.60) plus flat shipping."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_to_cents_rounds_half_up[0-0]",
+   "name": "test_to_cents_rounds_half_up[0-0]",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "Fractional cents round half-up, so .5 always rounds away from zero."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_to_cents_rounds_half_up[0.5-1]",
+   "name": "test_to_cents_rounds_half_up[0.5-1]",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "Fractional cents round half-up, so .5 always rounds away from zero."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_to_cents_rounds_half_up[159.49-159]",
+   "name": "test_to_cents_rounds_half_up[159.49-159]",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "Fractional cents round half-up, so .5 always rounds away from zero."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_to_cents_rounds_half_up[159.5-160]",
+   "name": "test_to_cents_rounds_half_up[159.5-160]",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "Fractional cents round half-up, so .5 always rounds away from zero."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_to_cents_rounds_half_up[159.92-160]",
+   "name": "test_to_cents_rounds_half_up[159.92-160]",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "Fractional cents round half-up, so .5 always rounds away from zero."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_to_cents_truncates_when_asked",
+   "name": "test_to_cents_truncates_when_asked",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "Truncate mode (used by the cart_rounding bug) drops the fraction instead of rounding."
+  },
+  {
+   "id": "store/backend/tests/test_pricing.py::test_truncation_mode_undercharges",
+   "name": "test_truncation_mode_undercharges",
+   "file": "store/backend/tests/test_pricing.py",
+   "layer": "unit",
+   "feature": "pricing",
+   "bugs": [],
+   "docstring": "With truncation, the total for a $19.99 item is one cent lower than correct."
+  },
+  {
+   "id": "store/backend/tests/test_seed_and_spec.py::test_seed_is_deterministic",
+   "name": "test_seed_is_deterministic",
+   "file": "store/backend/tests/test_seed_and_spec.py",
+   "layer": "unit",
+   "feature": "seed",
+   "bugs": [],
+   "docstring": "Two independent seeds produce identical products, categories and coupons."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_bug_list_matches_registry",
+   "name": "test_bug_list_matches_registry",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "test-support",
+   "bugs": [],
+   "docstring": "/test/bugs lists all 11 switches."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_reset_requires_token[None]",
+   "name": "test_reset_requires_token[None]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "test-support",
+   "bugs": [],
+   "docstring": "/test/reset refuses requests without the right X-Test-Token."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_reset_requires_token[wrong]",
+   "name": "test_reset_requires_token[wrong]",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "test-support",
+   "bugs": [],
+   "docstring": "/test/reset refuses requests without the right X-Test-Token."
+  },
+  {
+   "id": "store/backend/tests/test_auth_admin_routes.py::test_reset_restores_seed_state",
+   "name": "test_reset_restores_seed_state",
+   "file": "store/backend/tests/test_auth_admin_routes.py",
+   "layer": "unit",
+   "feature": "test-support",
+   "bugs": [],
+   "docstring": "After changes to users and products, reset brings back exactly the seed data."
+  }
+ ]
+}
