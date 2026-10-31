@@ -1,0 +1,2011 @@
+[
+ {
+  "id": "41151665919-1",
+  "timestamp": "2026-10-31T00:56:44+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/41151665919",
+  "duration_s": 667.1,
+  "suite_seconds": {
+   "api-local": 15.08,
+   "api": 272.34,
+   "perf": 259.06,
+   "ui-chromium": 115.01,
+   "unit": 5.59
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/41151665919-1/junit.zip",
+    "bytes": 9201
+   },
+   "pdf": {
+    "path": "reports/41151665919-1/summary.pdf",
+    "bytes": 2147
+   },
+   "allure": {
+    "path": "reports/41151665919-1/allure-report.zip",
+    "bytes": 1697701
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 386,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 196,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 398,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 504,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "40982517972-1",
+  "timestamp": "2026-10-30T01:07:44+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/40982517972",
+  "duration_s": 674.2,
+  "suite_seconds": {
+   "api-local": 16.57,
+   "api": 272.45,
+   "perf": 261.04,
+   "ui-chromium": 117.47,
+   "unit": 6.68
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/40982517972-1/junit.zip",
+    "bytes": 9246
+   },
+   "pdf": {
+    "path": "reports/40982517972-1/summary.pdf",
+    "bytes": 2150
+   },
+   "allure": {
+    "path": "reports/40982517972-1/allure-report.zip",
+    "bytes": 1699514
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 306,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 194,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 397,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 408,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "40796769286-1",
+  "timestamp": "2026-10-29T01:05:36+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/40796769286",
+  "duration_s": 682.3,
+  "suite_seconds": {
+   "api-local": 15.42,
+   "api": 278.57,
+   "perf": 257.56,
+   "ui-chromium": 123.57,
+   "unit": 7.15
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/40796769286-1/junit.zip",
+    "bytes": 9216
+   },
+   "pdf": {
+    "path": "reports/40796769286-1/summary.pdf",
+    "bytes": 2154
+   },
+   "allure": {
+    "path": "reports/40796769286-1/allure-report.zip",
+    "bytes": 1699856
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 397,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 202,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 406,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 597,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "40608979874-1",
+  "timestamp": "2026-10-28T00:42:40+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/40608979874",
+  "duration_s": 687.1,
+  "suite_seconds": {
+   "api-local": 14.93,
+   "api": 275.21,
+   "perf": 266.17,
+   "ui-chromium": 125.61,
+   "unit": 5.22
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/40608979874-1/junit.zip",
+    "bytes": 9211
+   },
+   "pdf": {
+    "path": "reports/40608979874-1/summary.pdf",
+    "bytes": 2149
+   },
+   "allure": {
+    "path": "reports/40608979874-1/allure-report.zip",
+    "bytes": 1699484
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 310,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 194,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 406,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 589,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "40426047001-1",
+  "timestamp": "2026-10-27T00:37:33+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/40426047001",
+  "duration_s": 685.9,
+  "suite_seconds": {
+   "api-local": 15.1,
+   "api": 271.21,
+   "perf": 265.76,
+   "ui-chromium": 127.34,
+   "unit": 6.5
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/40426047001-1/junit.zip",
+    "bytes": 9196
+   },
+   "pdf": {
+    "path": "reports/40426047001-1/summary.pdf",
+    "bytes": 2151
+   },
+   "allure": {
+    "path": "reports/40426047001-1/allure-report.zip",
+    "bytes": 1699895
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 306,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 183,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 401,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 519,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "40243637532-1",
+  "timestamp": "2026-10-25T23:25:40+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/40243637532",
+  "duration_s": 672.4,
+  "suite_seconds": {
+   "api-local": 16.4,
+   "api": 271.83,
+   "perf": 258.33,
+   "ui-chromium": 118.51,
+   "unit": 7.33
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/40243637532-1/junit.zip",
+    "bytes": 9203
+   },
+   "pdf": {
+    "path": "reports/40243637532-1/summary.pdf",
+    "bytes": 2150
+   },
+   "allure": {
+    "path": "reports/40243637532-1/allure-report.zip",
+    "bytes": 1699842
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 301,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 114,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 400,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 510,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "40141450753-1",
+  "timestamp": "2026-10-24T23:22:08+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/40141450753",
+  "duration_s": 676.4,
+  "suite_seconds": {
+   "api-local": 15.86,
+   "api": 273.94,
+   "perf": 258.12,
+   "ui-chromium": 120.96,
+   "unit": 7.54
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/40141450753-1/junit.zip",
+    "bytes": 9219
+   },
+   "pdf": {
+    "path": "reports/40141450753-1/summary.pdf",
+    "bytes": 2154
+   },
+   "allure": {
+    "path": "reports/40141450753-1/allure-report.zip",
+    "bytes": 1700771
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 309,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 192,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 403,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 587,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "40041876016-1",
+  "timestamp": "2026-10-24T00:04:07+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/40041876016",
+  "duration_s": 673.5,
+  "suite_seconds": {
+   "api-local": 14.46,
+   "api": 270.57,
+   "perf": 258.65,
+   "ui-chromium": 124.84,
+   "unit": 4.96
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/40041876016-1/junit.zip",
+    "bytes": 9228
+   },
+   "pdf": {
+    "path": "reports/40041876016-1/summary.pdf",
+    "bytes": 2150
+   },
+   "allure": {
+    "path": "reports/40041876016-1/allure-report.zip",
+    "bytes": 1695908
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 307,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 190,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 396,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 494,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "39875209905-1",
+  "timestamp": "2026-10-23T00:12:26+00:00",
+  "commit_sha": "b766d3bc500f6a58aba9c572afeb0081bdf1f55b",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39875209905",
+  "duration_s": 687.6,
+  "suite_seconds": {
+   "api-local": 16.74,
+   "api": 276.94,
+   "perf": 259.63,
+   "ui-chromium": 128.23,
+   "unit": 6.07
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39875209905-1/junit.zip",
+    "bytes": 9193
+   },
+   "pdf": {
+    "path": "reports/39875209905-1/summary.pdf",
+    "bytes": 2153
+   },
+   "allure": {
+    "path": "reports/39875209905-1/allure-report.zip",
+    "bytes": 1700826
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 403,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 205,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 407,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 594,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "39696862910-1",
+  "timestamp": "2026-10-22T00:12:31+00:00",
+  "commit_sha": "ac7703e79cb0036206011b2acca8ffd31ff6beb3",
+  "branch": "main",
+  "trigger": "schedule",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39696862910",
+  "duration_s": 665.7,
+  "suite_seconds": {
+   "api-local": 15.67,
+   "api": 270.94,
+   "perf": 259.95,
+   "ui-chromium": 114.27,
+   "unit": 4.85
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39696862910-1/junit.zip",
+    "bytes": 9163
+   },
+   "pdf": {
+    "path": "reports/39696862910-1/summary.pdf",
+    "bytes": 2155
+   },
+   "allure": {
+    "path": "reports/39696862910-1/allure-report.zip",
+    "bytes": 1697040
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 311,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 162,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 385,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 493,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "39693277294-1",
+  "timestamp": "2026-10-21T23:37:58+00:00",
+  "commit_sha": "f56d6a1f9437db70ee6a4e3fbbacff6219ddd172",
+  "branch": "main",
+  "trigger": "push",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39693277294",
+  "duration_s": 679.5,
+  "suite_seconds": {
+   "api-local": 15.91,
+   "api": 271.38,
+   "perf": 261.82,
+   "ui-chromium": 124.09,
+   "unit": 6.26
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39693277294-1/junit.zip",
+    "bytes": 9191
+   },
+   "pdf": {
+    "path": "reports/39693277294-1/summary.pdf",
+    "bytes": 2151
+   },
+   "allure": {
+    "path": "reports/39693277294-1/allure-report.zip",
+    "bytes": 1699525
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 311,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 185,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 394,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 501,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "39688102698-1",
+  "timestamp": "2026-10-21T23:07:01+00:00",
+  "commit_sha": "06c2db44632402b5afff03db79c26f9f271b3747",
+  "branch": "main",
+  "trigger": "workflow_dispatch",
+  "enabled_bugs": [
+   "pagination_off_by_one",
+   "stock_not_enforced",
+   "remove_item_noop"
+  ],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39688102698",
+  "duration_s": 722.5,
+  "suite_seconds": {
+   "api-local": 13.73,
+   "api": 269.84,
+   "perf": 257.82,
+   "ui-chromium": 176.35,
+   "unit": 4.79
+  },
+  "counts": {
+   "passed": 429,
+   "failed": 10,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 97.7
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 128,
+    "failed": 7,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 94.8
+   },
+   "ui": {
+    "passed": 29,
+    "failed": 3,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 90.6
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39688102698-1/junit.zip",
+    "bytes": 14679
+   },
+   "pdf": {
+    "path": "reports/39688102698-1/summary.pdf",
+    "bytes": 2889
+   },
+   "allure": {
+    "path": "reports/39688102698-1/allure-report.zip",
+    "bytes": 2225054
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 313,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 188,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 396,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 503,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "39686263285-1",
+  "timestamp": "2026-10-21T22:52:46+00:00",
+  "commit_sha": "06c2db44632402b5afff03db79c26f9f271b3747",
+  "branch": "main",
+  "trigger": "workflow_dispatch",
+  "enabled_bugs": [
+   "search_ignores_filters",
+   "expired_card_accepted",
+   "coupon_expiry_ignored",
+   "checkout_double_submit"
+  ],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39686263285",
+  "duration_s": 745.8,
+  "suite_seconds": {
+   "api-local": 16.57,
+   "api": 273.58,
+   "perf": 257.44,
+   "ui-chromium": 193.13,
+   "unit": 5.06
+  },
+  "counts": {
+   "passed": 431,
+   "failed": 8,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 98.2
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 130,
+    "failed": 5,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 96.3
+   },
+   "ui": {
+    "passed": 29,
+    "failed": 3,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 90.6
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39686263285-1/junit.zip",
+    "bytes": 14267
+   },
+   "pdf": {
+    "path": "reports/39686263285-1/summary.pdf",
+    "bytes": 2779
+   },
+   "allure": {
+    "path": "reports/39686263285-1/allure-report.zip",
+    "bytes": 2110947
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 307,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 163,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 399,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 507,
+    "p95_budget_ms": 1000,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "39686176771-1",
+  "timestamp": "2026-10-21T22:38:13+00:00",
+  "commit_sha": "06c2db44632402b5afff03db79c26f9f271b3747",
+  "branch": "main",
+  "trigger": "workflow_dispatch",
+  "enabled_bugs": [
+   "cart_rounding",
+   "slow_products",
+   "order_idor",
+   "sort_desc_broken"
+  ],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39686176771",
+  "duration_s": 753.3,
+  "suite_seconds": {
+   "api-local": 11.12,
+   "api": 270.97,
+   "perf": 264.02,
+   "ui-chromium": 203.2,
+   "unit": 3.98
+  },
+  "counts": {
+   "passed": 424,
+   "failed": 15,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 96.6
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 126,
+    "failed": 9,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 93.3
+   },
+   "ui": {
+    "passed": 28,
+    "failed": 4,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 87.5
+   },
+   "perf": {
+    "passed": 2,
+    "failed": 2,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 50.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39686176771-1/junit.zip",
+    "bytes": 18418
+   },
+   "pdf": {
+    "path": "reports/39686176771-1/summary.pdf",
+    "bytes": 2963
+   },
+   "allure": {
+    "path": "reports/39686176771-1/allure-report.zip",
+    "bytes": 2324212
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 307,
+    "p95_budget_ms": 700,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 188,
+    "p95_budget_ms": 400,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 2096,
+    "p95_budget_ms": 800,
+    "passed": false
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 2130,
+    "p95_budget_ms": 1000,
+    "passed": false
+   }
+  ]
+ },
+ {
+  "id": "39682285062-1",
+  "timestamp": "2026-10-21T22:05:55+00:00",
+  "commit_sha": "db74eda66f4ed146c5d4379532cb35047aad43b3",
+  "branch": "main",
+  "trigger": "push",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39682285062",
+  "duration_s": 673.5,
+  "suite_seconds": {
+   "api-local": 15.3,
+   "api": 272.22,
+   "perf": 259.38,
+   "ui-chromium": 119.78,
+   "unit": 6.86
+  },
+  "counts": {
+   "passed": 439,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 439,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "api": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   },
+   "ui": {
+    "passed": 32,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 32,
+    "pass_rate": 100.0
+   },
+   "perf": {
+    "passed": 4,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 4,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39682285062-1/junit.zip",
+    "bytes": 9226
+   },
+   "pdf": {
+    "path": "reports/39682285062-1/summary.pdf",
+    "bytes": 2147
+   },
+   "allure": {
+    "path": "reports/39682285062-1/allure-report.zip",
+    "bytes": 1700097
+   }
+  },
+  "perf": [
+   {
+    "scenario": "cart_read",
+    "p95_ms": 319,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "product_detail",
+    "p95_ms": 142,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "product_search",
+    "p95_ms": 382,
+    "p95_budget_ms": 800,
+    "passed": true
+   },
+   {
+    "scenario": "products_list",
+    "p95_ms": 489,
+    "p95_budget_ms": 800,
+    "passed": true
+   }
+  ]
+ },
+ {
+  "id": "39671750227-1",
+  "timestamp": "2026-10-21T20:52:19+00:00",
+  "commit_sha": "42fdf9f8db35a834c125d19c13fb661b243ef937",
+  "branch": "main",
+  "trigger": "push",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39671750227",
+  "duration_s": 22.4,
+  "suite_seconds": {
+   "api-local": 15.78,
+   "unit": 6.58
+  },
+  "counts": {
+   "passed": 268,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 268,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39671750227-1/junit.zip",
+    "bytes": 5037
+   },
+   "pdf": {
+    "path": "reports/39671750227-1/summary.pdf",
+    "bytes": 1721
+   },
+   "allure": {
+    "path": "reports/39671750227-1/allure-report.zip",
+    "bytes": 1485940
+   }
+  },
+  "perf": []
+ },
+ {
+  "id": "39666242953-1",
+  "timestamp": "2026-10-21T20:00:20+00:00",
+  "commit_sha": "4731b82fd6f08b72c14469dbf3be1bb597fcba51",
+  "branch": "main",
+  "trigger": "push",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39666242953",
+  "duration_s": 22.0,
+  "suite_seconds": {
+   "api-local": 15.43,
+   "unit": 6.58
+  },
+  "counts": {
+   "passed": 268,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 268,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39666242953-1/junit.zip",
+    "bytes": 5027
+   },
+   "pdf": {
+    "path": "reports/39666242953-1/summary.pdf",
+    "bytes": 1720
+   },
+   "allure": {
+    "path": "reports/39666242953-1/allure-report.zip",
+    "bytes": 1486612
+   }
+  },
+  "perf": []
+ },
+ {
+  "id": "39665611917-1",
+  "timestamp": "2026-10-21T19:56:01+00:00",
+  "commit_sha": "e41a954816f49f2fe41877c89ecdbb8ef6181bd5",
+  "branch": "main",
+  "trigger": "push",
+  "enabled_bugs": [],
+  "workflow_url": "https://github.com/kartikey3112/crash-cart/actions/runs/39665611917",
+  "duration_s": 22.9,
+  "suite_seconds": {
+   "api-local": 16.25,
+   "unit": 6.64
+  },
+  "counts": {
+   "passed": 268,
+   "failed": 0,
+   "error": 0,
+   "skipped": 0,
+   "flaky": 0,
+   "total": 268,
+   "pass_rate": 100.0
+  },
+  "layers": {
+   "unit": {
+    "passed": 133,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 133,
+    "pass_rate": 100.0
+   },
+   "api-local": {
+    "passed": 135,
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "total": 135,
+    "pass_rate": 100.0
+   }
+  },
+  "coverage": {
+   "percent": 98.3,
+   "lines_covered": 751,
+   "lines_total": 761,
+   "branches_covered": 131,
+   "branches_total": 136
+  },
+  "reports": {
+   "junit": {
+    "path": "reports/39665611917-1/junit.zip",
+    "bytes": 4998
+   },
+   "pdf": {
+    "path": "reports/39665611917-1/summary.pdf",
+    "bytes": 1721
+   },
+   "allure": {
+    "path": "reports/39665611917-1/allure-report.zip",
+    "bytes": 1485314
+   }
+  },
+  "perf": []
+ }
+]
