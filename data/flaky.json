@@ -1,0 +1,7 @@
+{
+ "generated_at": "2026-11-21T02:23:31+00:00",
+ "window_days": 30,
+ "runs_considered": 36,
+ "runs_excluded_with_bugs": 3,
+ "tests": []
+}
